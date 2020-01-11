@@ -4,6 +4,7 @@ import GodStats from '../GodStats/GodStats.js';
 import TimelineSlider from '../TimelineSlider/TimelineSlider.js';
 import StatBlock from '../../data_objects/StatBlock';
 import StatContext from '../../contexts/StatContext.js';
+import ItemBuild from '../ItemBuild/ItemBuild.js';
 
 
 
@@ -26,7 +27,9 @@ function App() {
     <div className="App">-
       <StatContext.Provider value={defaultStats}>
         <GodStats goNum={0}></GodStats>
+        <ItemBuild godNum={0}></ItemBuild>
         <TimelineSlider />
+        <ItemBuild godNum={1}></ItemBuild>
         <GodStats godNum={1}></GodStats>
       </StatContext.Provider>
     </div>

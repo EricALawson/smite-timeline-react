@@ -17,8 +17,6 @@ const StatTable = ({godNum}) => {
     console.log(StatContext);
     const {gods} = React.useContext(StatContext);
     const stats = gods[0];
-    console.log(godNum);
-    console.log(stats);
 
     const displayStat = (name) => {
         return (
