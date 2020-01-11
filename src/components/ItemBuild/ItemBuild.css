@@ -1,0 +1,9 @@
+.ItemBuild {
+    display: inline-block;
+}
+
+ol {
+    list-style: none;
+    margin: 2px;
+    padding: 0;
+}
