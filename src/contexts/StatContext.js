@@ -10,5 +10,6 @@ const defaultStats = {
 }
 
 const StatContext = React.createContext(defaultStats);
+console.log(StatContext)
 
 export default StatContext;

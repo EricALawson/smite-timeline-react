@@ -15,14 +15,19 @@ import StatContext from '../../contexts/StatContext.js';
 // })
 
 function App() {
-
+  const defaultStats = {
+    gods : [
+        new StatBlock({health : 400, power : 100 }),
+        new StatBlock({health : 300, hp5 : 3})
+    ]
+  } 
 
   return (
-    <div className="App">
-      <StatContext.Provider>
-        { GodStats(0) }
+    <div className="App">-
+      <StatContext.Provider value={defaultStats}>
+        <GodStats goNum={0}></GodStats>
         <TimelineSlider />
-        { GodStats(1) }
+        <GodStats godNum={1}></GodStats>
       </StatContext.Provider>
     </div>
   );

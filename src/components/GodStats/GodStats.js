@@ -2,21 +2,23 @@ import React from 'react';
 import './GodStats.css';
 import StatContext from '../../contexts/StatContext.js';
 
-console.log(StatContext)
+const GodStats = ({godNum}) => {
 
-const GodStats = (whichGod) => {
-    const stats = React.useContext(StatContext)
-
-    return( 
+    return(
         <div className="GodStats">
-            {StatTable(stats.gods[whichGod])}
+            <StatTable godNum={godNum}></StatTable>
         </div>
     );
 }
 
 export default GodStats;
 
-const StatTable = (stats) => {
+const StatTable = ({godNum}) => {
+    console.log(StatContext);
+    const {gods} = React.useContext(StatContext);
+    const stats = gods[0];
+    console.log(godNum);
+    console.log(stats);
 
     const displayStat = (name) => {
         return (
