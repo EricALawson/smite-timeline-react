@@ -10,7 +10,6 @@ const ItemBuild = ({godNum}) => {
     for(let count = 0; count < maxItemCount; count++) {
         slots.push(<ItemSlot id={count} item={build[count]}></ItemSlot>);
     }
-    console.log(slots)
     return (
         <div className="ItemBuild">
             <ol className="Build">

@@ -3,5 +3,16 @@ li {
     background-color: blue;
     min-width: 3em;
     min-height: 3em;
-    margin: 2px;   
+    margin: 2px;  
+    position: relative;
+}
+
+button {
+    position: absolute;
+    display: box;
+    width: 100%;
+    height: 100%;
+    opacity: 0%;
+    margin: 0;
+    padding: 0;
 }
