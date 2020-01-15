@@ -1,6 +1,5 @@
 import React from 'react';
 import './ItemSelector.css';
-import '../../../hooks/useOutsideClick';
 
 const ItemSelector = ({openState, closeSelector}) => {
     // const ref = React.useRef();
