@@ -1,25 +1,18 @@
 import React from 'react';
 import './ItemSelector.css';
+import '../../../hooks/useOutsideClick';
+import useOutsideClick from '../../../hooks/useOutsideClick';
 
-const ItemSelector = ({prev, showSelector, setItemSlot}) => {
-
-    const Selector = () => {
-        return (
-            <div className='ItemSelector'>
+const ItemSelector = ({openState, closeSelector}) => {
+    // const ref = React.useRef();
+    // useOutsideClick(ref, closeSelector);
     
-            </div>
-        )
-    }
-    
-    const setSelection = (selectedItem) => {
-        showSelector(false);
-        setItemSlot(selectedItem);
-    }
-
     return (
-        <div className='background-fade' onClick={()=> {setSelection(prev)}}>
-            <Selector></Selector>
-        </div>
+            <dialog className='ItemSelector' open={openState}>
+                <form method='dialog'>
+                    <button onClick={closeSelector}>Cancel</button>
+                </form>
+            </dialog>
     )
 }
 

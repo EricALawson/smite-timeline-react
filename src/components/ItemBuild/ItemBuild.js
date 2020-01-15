@@ -1,17 +1,21 @@
 import React from 'react';
 import './ItemBuild.css';
 import ItemSlot from './ItemSlot/ItemSlot.js';
+import ItemSelector from './ItemSelector/ItemSelector';
 
-const maxItemCount = 10;
+const itemCount = 6;
 
 const ItemBuild = ({godNum}) => {
-    const build = React.useState(Array(6).fill(null))
+    const [build, updateBuild] = React.useState(Array(itemCount).fill(null))
+    const [isItemSelectorOpen, setItemSelectorOpen] = React.useState(false);
+    
     let slots = [];
-    for(let count = 0; count < maxItemCount; count++) {
-        slots.push(<ItemSlot id={count} item={build[count]}></ItemSlot>);
+    for(let count = 0; count < itemCount; count++) {
+        slots.push(<ItemSlot key={count} item={build[count]} openSelector={() => {setItemSelectorOpen(true)}}></ItemSlot>);
     }
     return (
         <div className="ItemBuild">
+            <ItemSelector openState={isItemSelectorOpen} closeSelector={() => {setItemSelectorOpen(false)}}></ItemSelector>
             <ol className="Build">
                 {slots}
             </ol>

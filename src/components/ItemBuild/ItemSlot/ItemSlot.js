@@ -2,11 +2,10 @@ import React, {useState} from 'react';
 import './ItemSlot.css';
 import ItemSelector from '../ItemSelector/ItemSelector';
 
-const ItemSlot = ({id, item}) => {
-    const [isSelectorDisplayed, showSelector] = useState(false);
-    
+const ItemSlot = ({id, item, openSelector}) => {
     const getItemSelection = () => {
-        showSelector(!isSelectorDisplayed);
+        openSelector();
+        //showSelector(!isSelectorDisplayed);
         //open ItemSelector
     
         //get item selected, and change the current item to the selection.
@@ -17,8 +16,7 @@ const ItemSlot = ({id, item}) => {
 
     return (
         <li>
-            <button onClick={getItemSelection}></button>
-            {isSelectorDisplayed && <ItemSelector prev={item} showSelector={showSelector}></ItemSelector>}
+            <button onClick={openSelector}></button>
         </li>
     )
 }

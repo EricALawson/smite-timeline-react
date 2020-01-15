@@ -1,10 +1,11 @@
-import React, {useState} from 'react';
+import React from 'react';
 import './App.css';
 import GodStats from '../GodStats/GodStats.js';
 import TimelineSlider from '../TimelineSlider/TimelineSlider.js';
 import StatBlock from '../../data_objects/StatBlock';
 import StatContext from '../../contexts/StatContext.js';
 import ItemBuild from '../ItemBuild/ItemBuild.js';
+import ItemSelector from '../ItemBuild/ItemSelector/ItemSelector';
 
 
 
@@ -24,7 +25,7 @@ function App() {
   } 
 
   return (
-    <div className="App">-
+    <div className="App">
       <StatContext.Provider value={defaultStats}>
         <GodStats goNum={0}></GodStats>
         <ItemBuild godNum={0}></ItemBuild>
