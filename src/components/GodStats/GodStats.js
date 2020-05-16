@@ -1,11 +1,11 @@
 import React from 'react';
 import './GodStats.css';
-import StatContext from '../../contexts/StatContext.js';
+import { connect } from 'react-redux';
 
 const GodStats = ({godNum}) => {
-
     return(
         <div className="GodStats">
+            <title>God Name Here</title>
             <StatTable godNum={godNum}></StatTable>
         </div>
     );
@@ -14,13 +14,16 @@ const GodStats = ({godNum}) => {
 export default GodStats;
 
 const StatTable = ({godNum}) => {
-    console.log(StatContext);
-    const {gods} = React.useContext(StatContext);
-    const stats = gods[0];
-
     const displayStat = (name) => {
+        const mapStateToProps = state => {
+            return {
+                name: name,
+                val: state.stats.gods[godNum][name]
+            }
+        }
+        const ConnectedStatItem = connect(mapStateToProps)(StatItem);
         return (
-        <StatItem name={name} val={stats[name]}></StatItem>
+            <ConnectedStatItem></ConnectedStatItem>
         );
     }
 

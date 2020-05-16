@@ -6,6 +6,12 @@ dialog::backdrop {
 
 dialog {
     background: navy;
+    padding: 0;
+    border: 0;
+}
+
+form {
+    padding: 1em;
 }
 
 .search, .item-view {

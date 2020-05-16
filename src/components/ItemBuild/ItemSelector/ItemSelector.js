@@ -32,9 +32,9 @@ const ItemSelector = ({openState, closeSelector}) => {
                                     </ul>
                                 </div>
                                 <ul className='search-results'>
-                                    <li className='item-search-rsult'>dummy1</li>
-                                    <li className='item-search-rsult'>dummy2</li>
-                                    <li className='item-search-rsult'>dummy3</li>
+                                    <li className='item-search-result'>dummy1</li>
+                                    <li className='item-search-result'>dummy2</li>
+                                    <li className='item-search-result'>dummy3</li>
                                 </ul>
                             </div>
                         </div>
