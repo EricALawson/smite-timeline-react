@@ -1,8 +1,8 @@
 import React from 'react';
 import './App.css';
-import GodStats from '../GodStats/GodStats.js';
-import TimelineSlider from '../TimelineSlider/TimelineSlider.js';
-import ItemBuild from '../ItemBuild/ItemBuild.js';
+import GodStats from '../GodStats/GodStats';
+import TimelineSlider from '../TimelineSlider/TimelineSlider';
+import ItemBuild from '../ItemBuild/ItemBuild';
 import ItemSelector from '../ItemBuild/ItemSelector/ItemSelector';
 
 

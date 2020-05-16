@@ -4,7 +4,7 @@ import './TimelineSlider.css';
 function TimelineSlider() {
     return (
         <div className="slidercontainer">
-            <input type="range" orient="vertical" min="0" max = "3600" id="time-slider"></input>
+            <input type="range" min="0" max = "3600" id="time-slider"></input>
         </div>
     )
 }

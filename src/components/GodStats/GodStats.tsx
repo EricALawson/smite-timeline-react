@@ -2,7 +2,15 @@ import React from 'react';
 import './GodStats.css';
 import { connect } from 'react-redux';
 
-const GodStats = ({godNum}) => {
+type StatsProp = {
+    godNum: number
+}
+type NameValPair = {
+    name: string,
+    val: number
+}
+
+const GodStats = ({godNum}: StatsProp) => {
     return(
         <div className="GodStats">
             <title>God Name Here</title>
@@ -13,9 +21,9 @@ const GodStats = ({godNum}) => {
 
 export default GodStats;
 
-const StatTable = ({godNum}) => {
-    const displayStat = (name) => {
-        const mapStateToProps = state => {
+const StatTable = ({godNum}: StatsProp) => {
+    const displayStat = (name: string) => {
+        const mapStateToProps = (state: any) => {
             return {
                 name: name,
                 val: state.stats.gods[godNum][name]
@@ -65,7 +73,7 @@ const StatTable = ({godNum}) => {
     );
 }
 
-const StatItem = (props) => {
+const StatItem = (props: NameValPair) => {
     return(
         <td>
             <span>{props.name}:</span><span>{props.val}</span>

@@ -2,7 +2,13 @@ import React, {useState} from 'react';
 import './ItemSlot.css';
 import ItemSelector from '../ItemSelector/ItemSelector';
 
-const ItemSlot = ({id, item, openSelector}) => {
+type SlotProps = {
+    key: number,
+    item: string,
+    openSelector: () => void
+}
+
+const ItemSlot = ({key, item, openSelector}: SlotProps) => {
     const getItemSelection = () => {
         openSelector();
         //showSelector(!isSelectorDisplayed);

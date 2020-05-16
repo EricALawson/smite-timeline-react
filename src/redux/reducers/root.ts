@@ -1,4 +1,5 @@
 import StatBlock from '../../data_objects/StatBlock'
+import { Action } from '@reduxjs/toolkit';
 
 const defaultStats = {
     gods : [
@@ -7,7 +8,7 @@ const defaultStats = {
     ]
 }
 
-function rootReducer(state = {stats: defaultStats}, action) {
+function rootReducer(state = {stats: defaultStats}, action: Action) {
     return state;
 }
 

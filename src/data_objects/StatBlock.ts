@@ -1,7 +1,21 @@
 
 class StatBlock {
+    power: number;
+            critChance: number;
+            flatPenetration: number;
+            flatReduction: number;
+            health: number;
+            mana: number;
+            hp5: number;
+            mp5: number;
+            moveSpeed: number;
+            attackSpeed: number;
+            physicalProtections: number;
+            magicalProtections: number;
+            cooldownReduction: number;
+            crowdControlReduction: number;
 
-    constructor(statMap) {
+    constructor(statMap: any) {
         if (statMap !== undefined) {
             this.power = statMap.power ? statMap.power : 0;
             this.critChance = statMap.critChance ? statMap.critChance : 0;
@@ -19,7 +33,20 @@ class StatBlock {
             this.crowdControlReduction = statMap.crowdControlReduction ? statMap.crowdControlReduction : 0;
         }
         else {
-            
+            this.power = 0;
+            this.critChance = 0;
+            this.flatPenetration = 0;
+            this.flatReduction = 0;
+            this.health = 0;
+            this.mana = 0;
+            this.hp5 = 0;
+            this.mp5 = 0;
+            this.moveSpeed = 0;
+            this.attackSpeed = 0;
+            this.physicalProtections = 0;
+            this.magicalProtections = 0;
+            this.cooldownReduction = 0;
+            this.crowdControlReduction = 0;
         }
     }
 }

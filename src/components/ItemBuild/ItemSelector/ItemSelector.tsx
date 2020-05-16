@@ -1,7 +1,12 @@
 import React from 'react';
 import './ItemSelector.css';
 
-const ItemSelector = ({openState, closeSelector}) => {
+type SelectorProps = {
+    openState: boolean,
+    closeSelector: () => void
+}
+
+const ItemSelector = ({openState, closeSelector}: SelectorProps) => {
     // const ref = React.useRef();
     // useOutsideClick(ref, closeSelector);
     
