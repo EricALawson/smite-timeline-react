@@ -1,4 +1,4 @@
-import TimelineSlider from "../components/TimelineSlider/TimelineSlider";
+
 
 class KillTiming {
     startingGold = 1500;
@@ -13,7 +13,7 @@ class KillTiming {
         let xp = 0;
         let level = 0; //don't bother adjusting for array indexing until we display the level.
         var times = [];
-        while(TimelineSlider.length < 20) {
+        while(times.length < 20) {
             if(xp >= xpForLevel[level]) {
                 times.push(time);
                 level++;
@@ -38,7 +38,7 @@ class KillTiming {
             time++;
 
             gold += this.goldPerSecond;
-            
+
             if((time - this.waveStartTime) % this.waveRespawnTime === 0) {
                 gold += minions.waveMelee.gold * 3 + minions.waveArcher.gold * 3;
             }
@@ -46,6 +46,7 @@ class KillTiming {
             if((time - this.jungleStartTime) % this.jungleRespawnTime === 0) {
                 gold += minions.jungleBuffMinion.gold * 2 + minions.jungleBuffHolder.gold;
             }
+            //console.log("time: " + time + " gold: " + gold);
         }
         return time;
     }
