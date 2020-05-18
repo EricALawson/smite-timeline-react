@@ -1,9 +1,17 @@
 
 import {configureStore} from '@reduxjs/toolkit';
-import rootReducer from './reducers/root';
+import godReducer from './reducers/GodReducer';
+import buildReducer from './reducers/BuildReducer';
+import timelineReducer from './reducers/TimelineReducer';
+import killTimingReducer from './reducers/KillTimingReducer';
 
 const store = configureStore({
-    reducer: rootReducer
+    reducer: {
+        god: godReducer,
+        build: buildReducer,
+        killTiming: killTimingReducer,
+        timeline: timelineReducer
+    }
 });
 
 export default store;
