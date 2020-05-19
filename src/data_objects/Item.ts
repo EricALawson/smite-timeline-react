@@ -8,7 +8,7 @@ class Item {
     constructor() {
         this.goldCost = 0;
         this.name = "";
-        this.stats = new StatBlock(undefined);
+        this.stats = new StatBlock(0);
     }
 }
 

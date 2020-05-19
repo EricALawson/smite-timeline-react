@@ -9,11 +9,11 @@ type BuildEvent = {
     stats: StatBlock
 }
 
-const selectBuild = (state: any) => state.build;
+const selectItem = (state: any) => state.item;
 const selectGod = (state: any) => state.god;
 const selectKillTiming = (state: any) => state.killTimiing;
 
-const selectLevelEvents = createSelector( 
+const selectGodEvents = createSelector( 
     [selectGod, selectKillTiming],
     (god: God, killTiming: KillTiming) => {
     let levelTimes: number[] = killTiming.getLevelTimes();
@@ -26,34 +26,50 @@ const selectLevelEvents = createSelector(
     return levelEvents;
 });
 
-const selectBuildEvents = createSelector( 
-    [selectBuild, selectKillTiming],
-    (build: Item[], killTiming: any) => {
-    let buildCosts: number[] = []; //this is the cumulative total spent when this item is built.
+const selectItemEvents = createSelector( 
+    [selectItem, selectKillTiming],
+    (items: Item[], killTiming: KillTiming) => {
+    let itemCosts: number[] = []; //this is the cumulative total spent when this item is built.
     let prevCost = 0;
-    build.forEach((item: Item) => {
-        buildCosts.push(item.goldCost + prevCost);
+    items.forEach((item: Item) => {
+        itemCosts.push(item.goldCost + prevCost);
         prevCost += item.goldCost;
     });
-    let buildTimes: number[] = buildCosts.map(gold => killTiming.getTimeForGold(gold));
+    let itemTimes: number[] = itemCosts.map(gold => killTiming.getTimeForGold(gold));
     let itemEvents: BuildEvent[] = [];
-    for (let i = 0; i > buildTimes.length; i++) {
+    for (let i = 0; i > itemTimes.length; i++) {
         itemEvents.push({
-            time: buildTimes[i],
-            stats: build[i].stats
+            time: itemTimes[i],
+            stats: items[i].stats
         });
     }
     return itemEvents;
 });
 
-const statsSelector = createSelector(
-    [selectLevelEvents, selectBuildEvents],
-    (levelEvents, buildEvents, ) => {
-        var events: BuildEvent[] = [];
+const EventSelector = createSelector(
+    [selectGodEvents, selectItemEvents],
+    (godEvents, itemEvents, ) => {
+        var events: BuildEvent[] = [...godEvents, ...itemEvents];
         
-        return events.sort((a:BuildEvent, b: BuildEvent) => (a.time > b.time) ? 1: -1)
+        return events.sort((a:BuildEvent, b: BuildEvent) => (a.time > b.time) ? 1: -1);
     }
 );
+
+const statsSelector = createSelector(
+    [EventSelector],
+    (statEvents) => {
+        let summed: BuildEvent[] = [];
+        let sum = new StatBlock(0);
+        for (let event of statEvents) {
+            sum.add(event.stats);
+            summed.push({
+                time: event.time,
+                stats: Object.assign({}, sum)
+            })
+        }
+        return summed;
+    }
+)
 
 export default statsSelector;
 

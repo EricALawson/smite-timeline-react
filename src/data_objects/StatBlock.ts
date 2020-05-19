@@ -3,7 +3,7 @@ class StatBlock {
     power: number;
             critChance: number;
             flatPenetration: number;
-            flatReduction: number;
+            percentPenetration: number;
             health: number;
             mana: number;
             hp5: number;
@@ -15,12 +15,12 @@ class StatBlock {
             cooldownReduction: number;
             crowdControlReduction: number;
 
-    constructor(statMap: any) {
-        if (statMap !== undefined) {
+    constructor(statMap: any = 0) {
+        if (statMap !== 0) {
             this.power = statMap.power ? statMap.power : 0;
             this.critChance = statMap.critChance ? statMap.critChance : 0;
             this.flatPenetration = statMap.flatPenetration ? statMap.flatPenetration : 0;
-            this.flatReduction = statMap.flatReduction ? statMap.flatReduction : 0;
+            this.percentPenetration = statMap.percentPenetration ? statMap.percentPenetration : 0;
             this.health = statMap.health ? statMap.health : 0;
             this.mana = statMap.mana ? statMap.mana : 0;
             this.hp5 = statMap.hp5 ? statMap.hp5 : 0;
@@ -36,7 +36,7 @@ class StatBlock {
             this.power = 0;
             this.critChance = 0;
             this.flatPenetration = 0;
-            this.flatReduction = 0;
+            this.percentPenetration = 0;
             this.health = 0;
             this.mana = 0;
             this.hp5 = 0;
@@ -48,6 +48,24 @@ class StatBlock {
             this.cooldownReduction = 0;
             this.crowdControlReduction = 0;
         }
+    }
+
+    add(stats: StatBlock): StatBlock {
+        this.power += stats.power;
+        this.critChance += stats.critChance;
+        this.flatPenetration += stats.flatPenetration;
+        this.percentPenetration += stats.percentPenetration;
+        this.health += stats.health;
+        this.mana += stats.mana;
+        this.hp5 += stats.hp5;
+        this.mp5 += stats.mp5;
+        this.moveSpeed += stats.moveSpeed;
+        this.attackSpeed += stats.attackSpeed;
+        this.physicalProtections += stats.physicalProtections;
+        this.magicalProtections += stats.magicalProtections;
+        this.cooldownReduction += stats.cooldownReduction;
+        this.crowdControlReduction += stats.crowdControlReduction;
+        return this;
     }
 }
 
