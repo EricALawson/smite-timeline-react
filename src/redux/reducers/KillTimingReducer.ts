@@ -1,10 +1,9 @@
 import { createReducer } from "@reduxjs/toolkit";
 import KillTiming from "../../data_objects/KillTiming";
+import Build from "../../data_objects/Build";
 
-const killTimingReducer = createReducer(new KillTiming(), 
-    {
-
-    }
-);
+const killTimingReducer = (state: Build, action: any) => {
+    new KillTiming();
+}
 
 export default killTimingReducer;
