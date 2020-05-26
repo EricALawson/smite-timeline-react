@@ -23,40 +23,35 @@ test('test summed events selector', () => {
     let build = new Build();
     let selector = makeStatsSelector();
     let events = selector(build);
-    expect(events[0].stats).toEqual(build.god.baseStats)
-})
-// test('stats selector on an empty build returns 20 level events', () => {
-//     let selector = makeStatsSelector();
-//     let leftGodState = new Build();
-//     let events = selector(leftGodState);
-//     expect(events.length).toBe(20);
-// });
+    expect(events[0].stats).toEqual(build.god.baseStats);
+    expect(events[1].stats).toEqual(build.god.baseStats.add(build.god.perLevelStats));
+});
 
-// test('Use two selectors for two builds', () =>  {
-//     let testState  = {
-//         left: new Build(
-//             new God(
-//                 "testGodLeft",
-//                 new StatBlock({health: 100, power: 100}),
-//                 new StatBlock({health: 10, power: 10})
-//             ),
-//         ),
-//         right: new Build(
-//             new God(
-//                 "testGodRight",
-//                 new StatBlock({mana: 200, magicalProtections: 200}),
-//                 new StatBlock({mana: 20, magicalProtections: 20, hp5: 1})
-//             ),
-//         ),
-//         time: 0
-//     }
+test('Use two selectors for two builds', () =>  {
+    let testState  = {
+        left: new Build(
+            new God(
+                "testGodLeft",
+                new StatBlock({health: 100, power: 100}),
+                new StatBlock({health: 10, power: 10})
+            ),
+        ),
+        right: new Build(
+            new God(
+                "testGodRight",
+                new StatBlock({mana: 200, magicalProtections: 200}),
+                new StatBlock({mana: 20, magicalProtections: 20, hp5: 1})
+            ),
+        ),
+        time: 0
+    }
     
-//     let selectorLeft = makeStatsSelector();
-//     let selectorRight = makeStatsSelector();
-//     let leftEvents = selectorLeft(testState.left)
-//     let rightEvents = selectorRight(testState.right)
-//     expect(leftEvents[0].stats.health).toBe(100);
-//     expect(rightEvents[0].stats.health).toBe(0);
-//     expect(leftEvents[0].stats.mana).toBe(200);
-//     expect(rightEvents[0].stats.mana).toBe(0);
-// });
+    let selectorLeft = makeStatsSelector();
+    let selectorRight = makeStatsSelector();
+    let leftEvents = selectorLeft(testState.left)
+    let rightEvents = selectorRight(testState.right)
+    expect(leftEvents[0].stats.health).toBe(100);
+    expect(rightEvents[0].stats.health).toBe(0);
+    expect(leftEvents[0].stats.mana).toBe(0);
+    expect(rightEvents[0].stats.mana).toBe(200);
+});
