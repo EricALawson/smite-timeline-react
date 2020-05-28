@@ -1,33 +1,46 @@
 import React from 'react';
 import './GodStats.css';
 import { connect } from 'react-redux';
+import makeStatsSelector from '../../redux/selectors/StatsSelector';
+import Build from '../../data_objects/Build';
+import StatBlock from '../../data_objects/StatBlock';
 
-type StatsProp = {
-    godNum: number
+type BuildID = {
+    buildIdentifier: string
 }
 type NameValPair = {
-    name: string,
+    name: keyof StatBlock,
     val: number
 }
 
-const GodStats = ({godNum}: StatsProp) => {
+const GodStats = ({buildIdentifier}: BuildID) => {
     return(
         <div className="GodStats">
             <title>God Name Here</title>
-            <StatTable godNum={godNum}></StatTable>
+            <StatTable buildIdentifier={buildIdentifier}></StatTable>
         </div>
     );
 }
 
 export default GodStats;
 
-const StatTable = ({godNum}: StatsProp) => {
-    const displayStat = (name: string) => {
+const StatTable = ({buildIdentifier}: BuildID) => {
+    let statsSelector = makeStatsSelector();
+
+    const displayStat = (name: keyof StatBlock) => {
         const mapStateToProps = (state: any) => {
-            return {
-                name: name,
-                val: state.stats.gods[godNum][name]
+            let build: Build = state[buildIdentifier];
+            let events = statsSelector(build);
+            let time: number = state.time;
+            let stats: StatBlock = events.filter(event => event.time > time)[0].stats;
+            let val = stats[name]
+            if (typeof val == 'number') {
+                return {
+                    name: name,
+                    val: val
+                }
             }
+            
         }
         const ConnectedStatItem = connect(mapStateToProps)(StatItem);
         return (
@@ -51,7 +64,7 @@ const StatTable = ({godNum}: StatsProp) => {
             </tr>
             <tr>
                 {displayStat('flatPenetration')}
-                {displayStat('flatReduction')}
+                {displayStat('percentPenetration')}
             </tr>
             <tr>
                 {displayStat('attackSpeed')}
@@ -76,7 +89,7 @@ const StatTable = ({godNum}: StatsProp) => {
 const StatItem = (props: NameValPair) => {
     return(
         <td>
-            <span>{props.name}:</span><span>{props.val}</span>
+            <span>{props.name}: </span><span>{props.val}</span>
         </td>
     )
 }

@@ -4,12 +4,12 @@ import ItemSlot from './ItemSlot/ItemSlot';
 import ItemSelector from './ItemSelector/ItemSelector';
 
 type BuildProp = {
-    godNum: number
+    buildIdentifier: string
 }
 
 const itemCount = 6;
 
-const ItemBuild = ({godNum}: BuildProp) => {
+const ItemBuild = ({buildIdentifier}: BuildProp) => {
     const [build, updateBuild] = React.useState(Array(itemCount).fill(null))
     const [isItemSelectorOpen, setItemSelectorOpen] = React.useState(false);
     

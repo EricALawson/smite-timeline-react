@@ -18,11 +18,11 @@ import ItemSelector from '../ItemBuild/ItemSelector/ItemSelector';
 function App() {
   return (
     <div className="App">
-        <GodStats godNum={0}></GodStats>
-        <ItemBuild godNum={0}></ItemBuild>
+        <GodStats buildIdentifier={'left'}></GodStats>
+        <ItemBuild buildIdentifier={'left'}></ItemBuild>
         <TimelineSlider />
-        <ItemBuild godNum={1}></ItemBuild>
-        <GodStats godNum={1}></GodStats>
+        <ItemBuild buildIdentifier={'right'}></ItemBuild>
+        <GodStats buildIdentifier={'right'}></GodStats>
     </div>
   );
 }

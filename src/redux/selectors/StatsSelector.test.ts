@@ -1,7 +1,7 @@
-import makeStatsSelector, {makeGodEventSelector, makeItemEventSelector} from "./reducers/StatsSelector";
-import Build from "../data_objects/Build";
-import God from "../data_objects/God";
-import StatBlock from "../data_objects/StatBlock";
+import makeStatsSelector, {makeGodEventSelector, makeItemEventSelector} from "./StatsSelector";
+import Build from "../../data_objects/Build";
+import God from "../../data_objects/God";
+import StatBlock from "../../data_objects/StatBlock";
 
 test('test god event selector', () => {
     let selector = makeGodEventSelector();
