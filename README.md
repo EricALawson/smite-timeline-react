@@ -1,44 +1,47 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+README.md
 
-## Available Scripts
+Smite Timeline is a build tool for the game [SMITE by Hi-Rez Studios.](https://www.smitegame.com)
 
-In the project directory, you can run:
+The goal of this tool is to model the impact of time in build choices, and to compare builds. While many build tools for smite already exist, I don't believe any of them can help answer a question such as "If I build cheap items, and my opponent builds expensive stacking items, how long will I be ahead in stats?" Smite Timeline intends to answer these questions by creating a timeline of events that predicts when builds will complete each item, and then comparing two builds side by side to see exactly how different choices might play out.
 
-### `npm start`
+---
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+##Redux State
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+The base state of the app is:
+1. Left Build
+2. Right Build
+3. Game Time
 
-### `npm test`
+Game time is selected by a central slider in the UI and the stats for each build are updated to reflect what stats that build would have at that specific time.
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Builds contain:
+1. `God` - the chosen character for a build, includes starting stats, and stats gained each level.
+2. `Item` - an ordered list of items to be built, including their stats and gold cost.
+3. `KillTiming` - a model of when the player will gain experience and gold from kills. Currently there is only one kill timing model, but the state holds one for each model to allow for asymetrical xp/gold gain when more models are designed.
 
-### `npm run build`
+The base redux state can be found in /src/redux
+---
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+##Derived State
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+God and KillTiming can be combined to generate `LevelEvent`s. A LevelEvent represents the player gaining a level, including the change is stats and the time that each level would occur based on the KillTiming.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Items and KillTiming are combined to create `ItemEvent`s. ItemEvents represent when a player builds an item, based on their gold calculated from their KillTiming.
 
-### `npm run eject`
+All events are combined in one list, then sorted by the time they occur. Finally we sum the stats for all events before each events, so that the stats represent the total stats at that time, rather than the change in stats.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Derived state files can be found in /src/redux/selectors
+---
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+##The View
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+The view is rendered using React, using react-redux to map the redux state.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+The app displays that stats from each build at the same game time, which can be read directly as the stats from the last event whose time is less than the game time. Events will have an icon displayed along the side of the game time slider, spaced according to their times to give a visual representation of how far apart events are in time.
 
-## Learn More
+The react component files can be found in src/components
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+###Create React App
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+This project was created using create-react-app, the instructions for running and testing the app are still available in create-react-app readme.md
