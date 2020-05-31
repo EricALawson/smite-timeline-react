@@ -1,4 +1,5 @@
-README.md
+
+# About Smite Timeline
 
 Smite Timeline is a build tool for the game [SMITE by Hi-Rez Studios.](https://www.smitegame.com)
 
@@ -6,7 +7,7 @@ The goal of this tool is to model the impact of time in build choices, and to co
 
 ---
 
-##Redux State
+## Redux State
 
 The base state of the app is:
 1. Left Build
@@ -23,7 +24,7 @@ Builds contain:
 The base redux state can be found in /src/redux
 ---
 
-##Derived State
+## Derived State
 
 God and KillTiming can be combined to generate `LevelEvent`s. A LevelEvent represents the player gaining a level, including the change is stats and the time that each level would occur based on the KillTiming.
 
@@ -34,7 +35,7 @@ All events are combined in one list, then sorted by the time they occur. Finally
 Derived state files can be found in /src/redux/selectors
 ---
 
-##The View
+## The View
 
 The view is rendered using React, using react-redux to map the redux state.
 
@@ -42,6 +43,6 @@ The app displays that stats from each build at the same game time, which can be 
 
 The react component files can be found in src/components
 
-###Create React App
+### Create React App
 
 This project was created using create-react-app, the instructions for running and testing the app are still available in create-react-app readme.md
