@@ -5,7 +5,6 @@ Smite Timeline is a build tool for the game [SMITE by Hi-Rez Studios.](https://w
 
 The goal of this tool is to model the impact of time in build choices, and to compare builds. While many build tools for smite already exist, I don't believe any of them can help answer a question such as "If I build cheap items, and my opponent builds expensive stacking items, how long will I be ahead in stats?" Smite Timeline intends to answer these questions by creating a timeline of events that predicts when builds will complete each item, and then comparing two builds side by side to see exactly how different choices might play out.
 
----
 
 ## Redux State
 
@@ -18,11 +17,11 @@ Game time is selected by a central slider in the UI and the stats for each build
 
 Builds contain:
 1. `God` - the chosen character for a build, includes starting stats, and stats gained each level.
-2. `Item` - an ordered list of items to be built, including their stats and gold cost.
+2. `Item[]` - an ordered list of items to be built, including their stats and gold cost.
 3. `KillTiming` - a model of when the player will gain experience and gold from kills. Currently there is only one kill timing model, but the state holds one for each model to allow for asymetrical xp/gold gain when more models are designed.
 
 The base redux state can be found in /src/redux
----
+
 
 ## Derived State
 
@@ -33,7 +32,7 @@ Items and KillTiming are combined to create `ItemEvent`s. ItemEvents represent w
 All events are combined in one list, then sorted by the time they occur. Finally we sum the stats for all events before each events, so that the stats represent the total stats at that time, rather than the change in stats.
 
 Derived state files can be found in /src/redux/selectors
----
+
 
 ## The View
 
