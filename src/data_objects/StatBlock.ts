@@ -1,19 +1,19 @@
 
 class StatBlock {
     power: number;
-            critChance: number;
-            flatPenetration: number;
-            percentPenetration: number;
-            health: number;
-            mana: number;
-            hp5: number;
-            mp5: number;
-            moveSpeed: number;
-            attackSpeed: number;
-            physicalProtections: number;
-            magicalProtections: number;
-            cooldownReduction: number;
-            crowdControlReduction: number;
+    critChance: number;
+    flatPenetration: number;
+    percentPenetration: number;
+    health: number;
+    mana: number;
+    hp5: number;
+    mp5: number;
+    moveSpeed: number;
+    attackSpeed: number;
+    physicalProtections: number;
+    magicalProtections: number;
+    cooldownReduction: number;
+    crowdControlReduction: number;
 
     constructor(statMap: any = 0) {
         if (statMap !== 0) {

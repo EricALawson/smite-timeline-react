@@ -17,7 +17,7 @@ Game time is selected by a central slider in the UI and the stats for each build
 
 Builds contain:
 1. `God` - the chosen character for a build, includes starting stats, and stats gained each level.
-2. `Item[]` - an ordered list of items to be built, including their stats and gold cost.
+2. `(Item|undefined)[]` - an ordered list of items to be built, including their stats and gold cost. Each entry should correspond to an item slot in the UI, undefined means there is no item in that slot.
 3. `KillTiming` - a model of when the player will gain experience and gold from kills. Currently there is only one kill timing model, but the state holds one for each model to allow for asymetrical xp/gold gain when more models are designed.
 
 The base redux state can be found in /src/redux
