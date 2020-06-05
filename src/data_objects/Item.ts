@@ -6,12 +6,16 @@ class Item {
     stats: StatBlock;
     passive: any; //TODO make ItemPassive interface
 
-    constructor() {
-        this.goldCost = 0;
-        this.name = "";
-        this.stats = new StatBlock(0);
-        this.passive = {};
+    constructor(name = "", goldCost = 0, stats = new StatBlock(0), passive = null) {
+        this.name = name;
+        this.goldCost = goldCost;
+        this.stats = stats;
+        this.passive = passive;
     }
 }
 
 export default Item;
+
+const EmptySlot = new Item('Empty Slot');
+
+export {EmptySlot};

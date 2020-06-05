@@ -4,12 +4,12 @@ import KillTiming from "./KillTiming";
 
 class Build{
     god = new God();
-    items: (Item|undefined)[] = [];
+    items: (Item|undefined)[] = [undefined, undefined, undefined, undefined, undefined, undefined];
     killTiming = new KillTiming();
 
     constructor(
         god:God = new God(), 
-        items: (Item|undefined)[] = [],
+        items: (Item|undefined)[] = [undefined, undefined, undefined, undefined, undefined, undefined],
         killTiming = new KillTiming()
         ) {
             this.god = god;

@@ -3,15 +3,16 @@ import './App.css';
 import GodStats from '../GodStats/GodStats';
 import TimelineSlider from '../TimelineSlider/TimelineSlider';
 import ItemBuild from '../ItemBuild/ItemBuild';
+import { buildIdentifier } from '../../redux/store';
 
 function App() {
   return (
     <div className="App">
-        <GodStats buildIdentifier={'left'}></GodStats>
-        <ItemBuild buildIdentifier={'left'}></ItemBuild>
+        <GodStats buildIdentifier={buildIdentifier.left}></GodStats>
+        <ItemBuild buildIdentifier={buildIdentifier.left}></ItemBuild>
         <TimelineSlider />
-        <ItemBuild buildIdentifier={'right'}></ItemBuild>
-        <GodStats buildIdentifier={'right'}></GodStats>
+        <ItemBuild buildIdentifier={buildIdentifier.right}></ItemBuild>
+        <GodStats buildIdentifier={buildIdentifier.right}></GodStats>
     </div>
   );
 }
