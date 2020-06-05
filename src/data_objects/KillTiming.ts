@@ -51,6 +51,22 @@ class KillTiming {
         return time;
     }
 
+    getTimeForKills(killTarget: number) {
+        let time = 0;
+        let kills = 0;
+        while (kills < killTarget) {
+            if((time - this.waveStartTime) % this.waveRespawnTime === 0) {
+                kills += 6;
+            }
+
+            if((time - this.jungleStartTime) % this.jungleRespawnTime === 0) {
+                kills += 3;
+            }
+        }
+
+        return time;
+    }
+
 }
 
 const xpForLevel = [
