@@ -4,9 +4,11 @@ import { connect } from 'react-redux';
 import makeStatsSelector from '../../redux/selectors/StatsSelector';
 import Build from '../../data_objects/Build';
 import StatBlock from '../../data_objects/StatBlock';
+import GodSelector from './GodSelector';
+import { buildIdentifier } from '../../redux/store';
 
 type BuildID = {
-    buildIdentifier: string
+    buildIdentifier: buildIdentifier
 }
 type NameValPair = {
     name: keyof StatBlock,
@@ -16,7 +18,7 @@ type NameValPair = {
 const GodStats = ({buildIdentifier}: BuildID) => {
     return(
         <div className="GodStats">
-            <title>God Name Here</title>
+            <GodSelector buildIdentifier={buildIdentifier}></GodSelector>
             <StatTable buildIdentifier={buildIdentifier}></StatTable>
         </div>
     );
@@ -31,7 +33,7 @@ const StatTable = ({buildIdentifier}: BuildID) => {
         const mapStateToProps = (state: any) => {
             let build: Build = state[buildIdentifier];
             let events = statsSelector(build);
-            let time: number = state.time;
+            let time = state.time;
             let stats: StatBlock = events.filter(event => event.time > time)[0].stats;
             let val = stats[name]
             if (typeof val == 'number') {
@@ -40,8 +42,8 @@ const StatTable = ({buildIdentifier}: BuildID) => {
                     val: val
                 }
             }
-            
         }
+        
         const ConnectedStatItem = connect(mapStateToProps)(StatItem);
         return (
             <ConnectedStatItem></ConnectedStatItem>
