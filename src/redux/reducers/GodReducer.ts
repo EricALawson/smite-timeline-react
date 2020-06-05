@@ -1,11 +1,14 @@
-import { createReducer, Action } from '@reduxjs/toolkit';
-import StatBlock from '../../data_objects/StatBlock';
+import { PayloadAction } from '@reduxjs/toolkit';
 import God from '../../data_objects/God';
 import Build from '../../data_objects/Build';
 
 
-const godReducer = (state: Build, action: any) => {
-            state.god = action.payload.god;
+const godReducer = (state: Build, action: PayloadAction<God>) => {
+            return new Build(
+                action.payload,
+                state.items,
+                state.killTiming
+            )
         };
 
 export default godReducer;
