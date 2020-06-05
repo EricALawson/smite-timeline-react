@@ -12,6 +12,7 @@ class StatBlock {
     attackSpeed: number;
     physicalProtections: number;
     magicalProtections: number;
+    lifesteal: number;
     cooldownReduction: number;
     crowdControlReduction: number;
 
@@ -29,6 +30,7 @@ class StatBlock {
             this.attackSpeed = statMap.attackSpeed ? statMap.attackSpeed : 0;
             this.physicalProtections = statMap.physicalProtections ? statMap.physicalProtections : 0;
             this.magicalProtections = statMap.magicalProtections ? statMap.magicalProtections : 0;
+            this.lifesteal = statMap.lifesteal ? statMap.lifesteal : 0;
             this.cooldownReduction = statMap.cooldownReduction ? statMap.cooldownReduction : 0;
             this.crowdControlReduction = statMap.crowdControlReduction ? statMap.crowdControlReduction : 0;
         }
@@ -45,6 +47,7 @@ class StatBlock {
             this.attackSpeed = 0;
             this.physicalProtections = 0;
             this.magicalProtections = 0;
+            this.lifesteal = 0;
             this.cooldownReduction = 0;
             this.crowdControlReduction = 0;
         }
@@ -63,6 +66,7 @@ class StatBlock {
         this.attackSpeed += stats.attackSpeed;
         this.physicalProtections += stats.physicalProtections;
         this.magicalProtections += stats.magicalProtections;
+        this.lifesteal += stats.lifesteal;
         this.cooldownReduction += stats.cooldownReduction;
         this.crowdControlReduction += stats.crowdControlReduction;
         return this;

@@ -64,7 +64,7 @@ shoesOfFocus.name = "Shoes of The Magi";
 shoesOfFocus.stats = new StatBlock({
     power: 75,
     mana: 100,
-    flatPenetration: 10,
+    lifesteal: 0.08,
     moveSpeed: 0.18
 });
 
