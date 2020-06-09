@@ -15,12 +15,13 @@ const GodSelector = ({buildIdentifier}: BuildID) => {
             if (selectedGod) {
                 let slice = buildSlices[buildIdentifier];
                 let action = slice.actions.godReducer(selectedGod)
+                console.log(action.type);
                 store.dispatch(action);
             }  
         }}
     >
         {
-            gods.godNames.map((name: string) => <option>{name}</option>)
+            gods.godNames.map((name: string, index: number) => <option key={index}>{name}</option>)
         }
     </select>
 }

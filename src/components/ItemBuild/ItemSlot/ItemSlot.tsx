@@ -1,23 +1,22 @@
-import React, {useState} from 'react';
+import React from 'react';
 import './ItemSlot.css';
-import ItemSelector from '../ItemSelector/ItemSelector';
+import Item from '../../../data_objects/Item';
 
 type SlotProps = {
-    key: number,
-    item: string,
+    item: Item|undefined,
     openSelector: () => void
 }
 
-const ItemSlot = ({key, item, openSelector}: SlotProps) => {
-    const getItemSelection = () => {
-        openSelector();
-        //showSelector(!isSelectorDisplayed);
-        //open ItemSelector
+const ItemSlot = ({ item, openSelector}: SlotProps) => {
+    // const getItemSelection = () => {
+    //     openSelector();
+    //     //showSelector(!isSelectorDisplayed);
+    //     //open ItemSelector
     
-        //get item selected, and change the current item to the selection.
+    //     //get item selected, and change the current item to the selection.
     
-        //hide or close ItemSelector
-    }
+    //     //hide or close ItemSelector
+    // }
 
 
     return (

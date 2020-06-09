@@ -1,18 +1,17 @@
-import { createReducer } from "@reduxjs/toolkit";
+import { createReducer, PayloadAction } from "@reduxjs/toolkit";
 
-type SetTimeAction = {
-    type: "setTime",
-    payload: {
-        time: 0
+
+
+const timeReducer = createReducer(0, {
+    setTime: (state: number, action: PayloadAction<number>) => {
+        return action.payload;
     }
-}
+});
 
-const timelineReducer = createReducer(0, 
-    {
-        setTime: (state: number, action: SetTimeAction) => {
-            state = action.payload.time;
-        }
+const timeRangeReducer = createReducer(3600, {
+    setRange: (state: number, action: PayloadAction<number>) => {
+        return action.payload;
     }
-);
+});
 
-export default timelineReducer;
+export {timeReducer, timeRangeReducer};

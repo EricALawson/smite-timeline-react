@@ -1,12 +1,41 @@
 import React from 'react';
 import './TimelineSlider.css';
+import { connect } from 'react-redux';
+import {Slider} from 'antd';
+import { createAction } from '@reduxjs/toolkit';
+import { SliderValue } from 'antd/lib/slider';
+import store from '../../redux/store';
 
-function TimelineSlider() {
-    return (
-        <div className="slidercontainer">
-            <input type="range" min="0" max = "3600" id="time-slider"></input>
-        </div>
-    )
+
+type DispatchProps = {
+    changeTime: (value: SliderValue) => void;
+}
+const mapDispatchToProps = (dispatch: any) => {
+    return {
+        changeTime: (value: SliderValue) => {
+            if (typeof value === 'number') {
+                dispatch( createAction<number>('setTime')(value) );
+            }
+            console.log(store.getState() )
+        }
+    }  
 }
 
-export default TimelineSlider;
+function TimelineSlider({changeTime}: DispatchProps) {
+    return <div className="slidercontainer">
+        <Slider
+            defaultValue={0}
+            min={0}
+            max={3600}
+            vertical={true}
+            reverse={true}
+            onChange={changeTime}
+        />
+    </div>
+}
+
+export default connect(
+    null, 
+    mapDispatchToProps
+    )
+    (TimelineSlider);
