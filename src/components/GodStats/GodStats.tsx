@@ -34,7 +34,9 @@ const StatTable = ({buildIdentifier}: BuildID) => {
             let build: Build = state[buildIdentifier];
             let events = statsSelector(build);
             let time = state.time;
-            let stats: StatBlock = events.filter(event => event.time > time)[0].stats;
+            events = events.filter(event => event.time <= state.time);
+            //let stats: StatBlock = events.filter(event => event.time > time)[0].stats;
+            let stats = events[events.length - 1].stats; //the last event whose time is <= current time
             let val = stats[name]
             if (typeof val == 'number') {
                 return {

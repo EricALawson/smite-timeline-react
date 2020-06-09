@@ -4,12 +4,20 @@ import godReducer from './reducers/GodReducer';
 import {setItemAt, removeItemAt} from './reducers/itemReducer';
 import killTimingReducer from './reducers/KillTimingReducer';
 import Build from '../data_objects/Build';
-import timelineReducer from './reducers/TimelineReducer';
+import {timeReducer, timeRangeReducer} from './reducers/TimelineReducer';
+import { Ares } from '../data_objects/TestObjects';
 
-const buildSlice = (name: string) => {
+enum buildIdentifier {
+    left = 'left',
+    right = 'right'
+}
+
+export {buildIdentifier};
+
+const buildSlice = (name: buildIdentifier) => {
     return createSlice({
         name: name,
-        initialState: new Build(),
+        initialState: new Build(Ares),
         reducers: {
             godReducer,
             setItemAt,
@@ -19,14 +27,22 @@ const buildSlice = (name: string) => {
     })
 }
 
-const leftBuild = buildSlice('left');
-const rightBuild = buildSlice('right');
+const leftBuild = buildSlice(buildIdentifier.left);
+const rightBuild = buildSlice(buildIdentifier.right);
+
+const buildSlices = {
+    left: leftBuild,
+    right: rightBuild
+}
+
+export {buildSlices};
 
 const store = configureStore({
     reducer: {
         left: leftBuild.reducer,
         right: rightBuild.reducer,
-        time: timelineReducer
+        time: timeReducer,
+        timeRange: timeRangeReducer
     }
 });
 
