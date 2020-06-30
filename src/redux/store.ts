@@ -6,6 +6,7 @@ import killTimingReducer from './reducers/KillTimingReducer';
 import Build from '../data_objects/Build';
 import {timeReducer, timeRangeReducer} from './reducers/TimelineReducer';
 import { Ares } from '../data_objects/TestObjects';
+import itemPicker from './reducers/ItemPickerSlice';
 
 enum buildIdentifier {
     left = 'left',
@@ -42,7 +43,8 @@ const store = configureStore({
         left: leftBuild.reducer,
         right: rightBuild.reducer,
         time: timeReducer,
-        timeRange: timeRangeReducer
+        timeRange: timeRangeReducer,
+        itemPicker: itemPicker.reducer
     }
 });
 

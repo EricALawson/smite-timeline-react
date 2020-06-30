@@ -4,6 +4,7 @@ import GodStats from '../GodStats/GodStats';
 import TimelineSlider from '../TimelineSlider/TimelineSlider';
 import ItemBuild from '../ItemBuild/ItemBuild';
 import { buildIdentifier } from '../../redux/store';
+import ItemPicker from '../ItemBuild/ItemPicker/ItemPicker';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <TimelineSlider />
         <ItemBuild buildIdentifier={buildIdentifier.right}></ItemBuild>
         <GodStats buildIdentifier={buildIdentifier.right}></GodStats>
+        <ItemPicker></ItemPicker>
     </div>
   );
 }

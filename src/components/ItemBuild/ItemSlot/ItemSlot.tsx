@@ -1,27 +1,29 @@
 import React from 'react';
 import './ItemSlot.css';
 import Item from '../../../data_objects/Item';
+import { Slot, openItemPicker } from '../../../redux/reducers/ItemPickerSlice';
+import store from '../../../redux/store';
 
 type SlotProps = {
-    item: Item|undefined,
-    openSelector: () => void
+    item: Item,
+    slot: Slot
 }
 
-const ItemSlot = ({ item, openSelector}: SlotProps) => {
-    // const getItemSelection = () => {
-    //     openSelector();
-    //     //showSelector(!isSelectorDisplayed);
-    //     //open ItemSelector
-    
-    //     //get item selected, and change the current item to the selection.
-    
-    //     //hide or close ItemSelector
-    // }
-
+const ItemSlot = ({ item, slot}: SlotProps) => {
+    const openSelector = () => {
+        let action = {
+            type: openItemPicker,
+            payload: {
+                buildID: slot.buildID,
+                index: slot.index
+            }
+        }
+        store.dispatch(action)
+    };
 
     return (
         <li>
-            <button onClick={openSelector}></button>
+            <img className='item-slot' src={item.image} alt='selected item' onClick={openSelector} role='button'></img>
         </li>
     )
 }

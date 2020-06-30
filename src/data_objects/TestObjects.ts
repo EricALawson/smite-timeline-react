@@ -55,17 +55,19 @@ shoesOfFocus.stats = new StatBlock({
     cooldownReduction: 0.10,
     moveSpeed: 0.18
 });
+shoesOfFocus.image = process.env.PUBLIC_URL + '/images/items/' + shoesOfFocus.name + '.jpg';
 
 export {shoesOfFocus};
 
 let shoesOfTheMagi = new Item();
-shoesOfFocus.goldCost = 1550;
-shoesOfFocus.name = "Shoes of The Magi";
-shoesOfFocus.stats = new StatBlock({
+shoesOfTheMagi.goldCost = 1550;
+shoesOfTheMagi.name = "Shoes of The Magi";
+shoesOfTheMagi.stats = new StatBlock({
     power: 75,
     mana: 100,
     lifesteal: 0.08,
     moveSpeed: 0.18
 });
+shoesOfTheMagi.image = process.env.PUBLIC_URL + '/images/items/' + shoesOfTheMagi.name + '.jpg';
 
 export {shoesOfTheMagi};
