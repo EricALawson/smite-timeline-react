@@ -1,18 +1,48 @@
 import React from 'react';
-import './ItemSelector.css';
+import './ItemPicker.css';
+import store, { buildIdentifier, buildSlices } from '../../../redux/store';
+import { connect } from 'react-redux';
+import { closeItemPicker } from '../../../redux/reducers/ItemPickerSlice';
+import { shoesOfTheMagi } from '../../../data_objects/TestObjects';
 
-type SelectorProps = {
-    openState: boolean,
-    closeSelector: () => void
+type Slot = {
+    buildID: buildIdentifier,
+    index: number
 }
 
-const ItemSelector = ({openState, closeSelector}: SelectorProps) => {
-    // const ref = React.useRef();
-    // useOutsideClick(ref, closeSelector);
+type SelectorProps = {
+    isSelectorOpen: boolean,
+    slot: Slot
+}
+
+const mapStateToProps = (state: any) => {
+    return {
+        isSelectorOpen: state.itemPicker.isOpen,
+        slot: state.itemPicker.slot
+    }
+}
+
+const ItemPicker = ({isSelectorOpen, slot}: SelectorProps) => {
+
+    const closeSelector = () => {
+        store.dispatch({type: closeItemPicker})
+    }
+
+    //TODO: return item selected in the item picker instead of default shoesOfTheMagi
+    const selectItem = () => {
+        let action = {
+            type: buildSlices[slot.buildID].actions.setItemAt,
+            payload: {
+                index: slot.index,
+                item: shoesOfTheMagi
+            }
+        }
+        store.dispatch(action);
+        closeSelector();
+    }
     
     return (
-            <dialog className='Item-selector' open={openState}>
-                <form method='dialog'>
+            <dialog className='Item-selector' open={isSelectorOpen}>
                     <div className='search'>
                         <div className='vertical-container'>
                             Item Name:
@@ -46,10 +76,10 @@ const ItemSelector = ({openState, closeSelector}: SelectorProps) => {
                     </div>
                     <div className='item-view'>
                     <button onClick={closeSelector}>Cancel</button>
+                    <button onClick={selectItem}>Select Item</button>
                     </div>
-                </form>
             </dialog>
     )
 }
 
-export default ItemSelector;
+export default connect(mapStateToProps)(ItemPicker);

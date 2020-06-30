@@ -10,18 +10,27 @@ import { buildIdentifier } from '../../redux/store';
 type BuildID = {
     buildIdentifier: buildIdentifier
 }
+type ImageUrl = {
+    image: string
+}
 type NameValPair = {
     name: keyof StatBlock,
     val: number
 }
 
 const GodStats = ({buildIdentifier}: BuildID) => {
-    return(
+    const mapStateToGodImage = (state: any) => {
+        return {image: state[buildIdentifier].god.image}
+    }
+
+    const godStats = ({image}: ImageUrl) =>
         <div className="GodStats">
+            <img src={image} alt={'the selected god'}></img>
             <GodSelector buildIdentifier={buildIdentifier}></GodSelector>
             <StatTable buildIdentifier={buildIdentifier}></StatTable>
         </div>
-    );
+    const Connected = connect(mapStateToGodImage)(godStats);
+    return (<Connected></Connected>)
 }
 
 export default GodStats;

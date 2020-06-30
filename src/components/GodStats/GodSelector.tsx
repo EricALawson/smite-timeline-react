@@ -14,7 +14,7 @@ const GodSelector = ({buildIdentifier}: BuildID) => {
             let selectedGod = gods.getGod(event.target.value);
             if (selectedGod) {
                 let slice = buildSlices[buildIdentifier];
-                let action = slice.actions.godReducer(selectedGod)
+                let action = slice.actions.godReducer(selectedGod) 
                 console.log(action.type);
                 store.dispatch(action);
             }  
