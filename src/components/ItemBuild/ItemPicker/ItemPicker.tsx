@@ -42,7 +42,11 @@ const ItemPicker = ({isSelectorOpen, slot}: SelectorProps) => {
     }
     
     return (
-            <dialog className='Item-selector' open={isSelectorOpen}>
+            <dialog 
+                className='Item-selector' 
+                open={isSelectorOpen}
+                role='form'
+                aria-label='item picker'>
                     <div className='search'>
                         <div className='vertical-container'>
                             Item Name:

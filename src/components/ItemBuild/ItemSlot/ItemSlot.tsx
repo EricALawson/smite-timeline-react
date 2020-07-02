@@ -23,7 +23,13 @@ const ItemSlot = ({ item, slot}: SlotProps) => {
 
     return (
         <li>
-            <img className='item-slot' src={item.image} alt='selected item' onClick={openSelector} role='button'></img>
+            <img 
+                className='item-slot' 
+                src={item.image} 
+                alt='selected item' 
+                onClick={openSelector} 
+                role='button'
+                aria-label='item slot'></img>
         </li>
     )
 }
