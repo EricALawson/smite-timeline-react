@@ -11,13 +11,8 @@ type SlotProps = {
 
 const ItemSlot = ({ item, slot}: SlotProps) => {
     const openSelector = () => {
-        let action = {
-            type: openItemPicker,
-            payload: {
-                buildID: slot.buildID,
-                index: slot.index
-            }
-        }
+        
+        let action = openItemPicker(slot)
         store.dispatch(action)
     };
 

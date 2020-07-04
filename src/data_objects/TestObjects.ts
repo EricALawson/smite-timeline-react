@@ -2,9 +2,9 @@ import God from "./God";
 import StatBlock from "./StatBlock";
 import Item from "./Item";
 
-const Ares = new God(
+const Ares = God(
     'Ares',
-    new StatBlock({ //base stats
+    StatBlock({ //base stats
         health: 485,
         mana: 200,
         hp5: 8,
@@ -12,7 +12,7 @@ const Ares = new God(
         physicalProtections: 20,
         magicalProtections: 30
     }),
-    new StatBlock({ //per level stats
+    StatBlock({ //per level stats
         health: 90,
         mana: 37,
         hp5: 0.67,
@@ -24,9 +24,9 @@ const Ares = new God(
 
 export {Ares};
 
-const Cerberus = new God(
+const Cerberus = God(
     'Cerberus',
-    new StatBlock({ //base stats
+    StatBlock({ //base stats
         health: 490,
         mana: 200,
         hp5: 7,
@@ -34,7 +34,7 @@ const Cerberus = new God(
         physicalProtections: 19,
         magicalProtections: 30
     }),
-    new StatBlock({ //per level stats
+    StatBlock({ //per level stats
         health: 95,
         mana: 35,
         hp5: 0.75,
@@ -46,10 +46,10 @@ const Cerberus = new God(
 
 export {Cerberus};
 
-let shoesOfFocus = new Item();
+let shoesOfFocus = Item();
 shoesOfFocus.goldCost = 1600;
 shoesOfFocus.name = "Shoes of Focus";
-shoesOfFocus.stats = new StatBlock({
+shoesOfFocus.stats = StatBlock({
     mana: 250,
     power: 55,
     cooldownReduction: 0.10,
@@ -59,10 +59,10 @@ shoesOfFocus.image = process.env.PUBLIC_URL + '/images/items/' + shoesOfFocus.na
 
 export {shoesOfFocus};
 
-let shoesOfTheMagi = new Item();
+let shoesOfTheMagi = Item();
 shoesOfTheMagi.goldCost = 1550;
 shoesOfTheMagi.name = "Shoes of The Magi";
-shoesOfTheMagi.stats = new StatBlock({
+shoesOfTheMagi.stats = StatBlock({
     power: 75,
     mana: 100,
     lifesteal: 0.08,

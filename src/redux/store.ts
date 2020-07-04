@@ -18,7 +18,7 @@ export {buildIdentifier};
 const buildSlice = (name: buildIdentifier) => {
     return createSlice({
         name: name,
-        initialState: new Build(Ares),
+        initialState: Build(Ares),
         reducers: {
             godReducer,
             setItemAt,

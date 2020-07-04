@@ -1,8 +1,8 @@
 import { createSelector } from "@reduxjs/toolkit";
-import StatBlock from "../../data_objects/StatBlock";
+import StatBlock, { add } from "../../data_objects/StatBlock";
 import Item from "../../data_objects/Item";
 import God from "../../data_objects/God";
-import KillTiming from "../../data_objects/KillTiming";
+import KillTiming, { getTimeForGold, getLevelTimes } from "../../data_objects/KillTiming";
 import Build from "../../data_objects/Build";
 
 type BuildEvent = {
@@ -18,7 +18,7 @@ const makeGodEventSelector = () => {
     return createSelector( 
         [selectGod, selectKillTiming],
         (god: God, killTiming: KillTiming) => {
-            let levelTimes: number[] = killTiming.getLevelTimes();
+            let levelTimes: number[] = getLevelTimes(killTiming);
             let levelEvents: BuildEvent[] = []
             levelEvents.push( ...levelTimes.map(time => ({
                 time: time,
@@ -37,29 +37,22 @@ export {makeGodEventSelector};
 const makeItemEventSelector = () => {
     return createSelector( 
         [selectItem, selectKillTiming],
-        (buildItems: (Item | undefined)[], killTiming: KillTiming) => {
-        let itemCosts: number[] = []; //this is the cumulative total spent when this item is built.
-        let prevCost = 0;
-        let items: Item[] = buildItems.filter(
-            function<Item>(item: Item | undefined): item is Item {
-                return item instanceof Item;
-            }
-        )
-        items.forEach((item: (Item|undefined) ) => {
-            if(item instanceof Item) {
+        (items: Item[], killTiming: KillTiming) => {
+            let itemCosts: number[] = []; //this is the cumulative total spent when this item is built.
+            let prevCost = 0;
+            items.forEach((item: Item ) => {
                 itemCosts.push(item.goldCost + prevCost);
                 prevCost += item.goldCost;
-            }
-        });
-        let itemTimes: number[] = itemCosts.map(gold => killTiming.getTimeForGold(gold));
-        let itemEvents: BuildEvent[] = [];
-        for (let i = 0; i > itemTimes.length; i++) {
-            itemEvents.push({
-                time: itemTimes[i],
-                stats: items[i].stats
             });
+            let itemTimes: number[] = itemCosts.map(gold => getTimeForGold(killTiming, gold));
+            let itemEvents: BuildEvent[] = [];
+            for (let i = 0; i < itemTimes.length; i++) {
+                itemEvents.push({
+                    time: itemTimes[i],
+                    stats: items[i].stats
+                });
         }
-        return itemEvents; 
+        return itemEvents;
     });
 }
 export {makeItemEventSelector};
@@ -80,9 +73,9 @@ const makeStatsSelector = () => {
         [makeEventSelector()],
         (statEvents) => {
             let summed: BuildEvent[] = [];
-            let sum = new StatBlock(0);
+            let sum = StatBlock({});
             for (let event of statEvents) {
-                sum.add(event.stats);
+                sum = add(sum, event.stats);
                 summed.push({
                     time: event.time,
                     stats: Object.assign({}, sum)

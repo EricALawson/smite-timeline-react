@@ -1,5 +1,5 @@
 import { PayloadAction } from '@reduxjs/toolkit';
-import Item from '../../data_objects/Item';
+import Item, { EmptySlot } from '../../data_objects/Item';
 import Build from '../../data_objects/Build';
 
 type SetItemPayload = {
@@ -10,7 +10,7 @@ type SetItemPayload = {
 const setItemAt = (state: Build, action: PayloadAction<SetItemPayload>) => {
     let items = [...state.items];
     items[action.payload.index] = action.payload.item;
-    return new Build(
+    return Build(
         state.god,
         items,
         state.killTiming
@@ -19,8 +19,8 @@ const setItemAt = (state: Build, action: PayloadAction<SetItemPayload>) => {
 
 const removeItemAt = (state: Build, action: PayloadAction<number>) => {
     let items = [...state.items];
-    items[action.payload] = undefined;
-    return new Build(
+    items[action.payload] = EmptySlot;
+    return Build(
         state.god,
         items,
         state.killTiming

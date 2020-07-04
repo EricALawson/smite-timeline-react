@@ -1,23 +1,30 @@
 import StatBlock from "./StatBlock";
 
-class Item {
+interface Item {
     goldCost: number;
     name: string;
     stats: StatBlock;
     image: string;
-    passive: any; //TODO make ItemPassive interface
-
-    constructor(name = "", goldCost = 0, stats = new StatBlock(0), passive = null) {
-        this.name = name;
-        this.goldCost = goldCost;
-        this.stats = stats;
-        this.passive = passive;
-        this.image = process.env.PUBLIC_URL + '/images/items/' + name + '.jpg';
-    }
+    passive: any; //TODO make item passives
 }
+
+const Item = (
+    name = "", 
+    goldCost = 0, 
+    stats = StatBlock({}), 
+    passive = null
+    ): Item => {
+        return {
+            name: name,
+            goldCost: goldCost,
+            stats: stats,
+            passive: passive,
+            image: process.env.PUBLIC_URL + '/images/items/' + name + '.jpg'
+        } as Item
+    }
 
 export default Item;
 
-const EmptySlot = new Item('Empty Slot');
+const EmptySlot = Item('Empty Slot');
 
 export {EmptySlot};
