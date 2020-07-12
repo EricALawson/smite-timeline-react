@@ -10,6 +10,7 @@ const GodSelector = ({buildIdentifier}: BuildID) => {
     let gods = GodProvider.getInstance();
 
     return <select
+        aria-label={'god selection ' + buildIdentifier}
         onChange={(event) => {
             let selectedGod = gods.getGod(event.target.value);
             if (selectedGod) {

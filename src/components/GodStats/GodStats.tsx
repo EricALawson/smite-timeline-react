@@ -25,7 +25,7 @@ const GodStats = ({buildIdentifier}: BuildID) => {
 
     const godStats = ({image}: ImageUrl) =>
         <div className="GodStats">
-            <img src={image} alt={'the selected god'}></img>
+            <img src={image} alt='the selected god' aria-label={'god image ' + buildIdentifier} ></img>
             <GodSelector buildIdentifier={buildIdentifier}></GodSelector>
             <StatTable buildIdentifier={buildIdentifier}></StatTable>
         </div>
