@@ -16,7 +16,8 @@ const God = (
         name: name,
         baseStats: baseStats,
         perLevelStats: perLevelStats,
-        image: process.env.PUBLIC_URL + '/images/god_cards/' + name + '.jpg'
+        //image: process.env.PUBLIC_URL + '/images/god_cards/' + name + '.jpg'
+        image: "https://web2.hirez.com/smite/god-cards/" + name.toLowerCase().replace(/\s/g, "-") + ".jpg"
     }
 }
 

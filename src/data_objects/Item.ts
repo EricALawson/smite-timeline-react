@@ -19,7 +19,8 @@ const Item = (
             goldCost: goldCost,
             stats: stats,
             passive: passive,
-            image: process.env.PUBLIC_URL + '/images/items/' + name + '.jpg'
+            //image: process.env.PUBLIC_URL + '/images/items/' + name + '.jpg'
+            image: "https://web2.hirez.com/smite/item-icons/" + name.toLowerCase().replace(/\s/g, "-") + ".jpg"
         } as Item
     }
 

@@ -1,22 +1,17 @@
 
-li {
-    background-color: blue;
-    margin: 2px;  
-    padding: 0;
-    position: relative;
-}
 
 img.item-slot {
+    border: 1px solid black;
+    margin: 2px;  
+    padding: 2px;
+    position: relative;
     top: 0;
     left: 0;
     overflow: hidden;
-    max-width: 3em;
-    max-height: 3em;
+    max-width: 3.5em;
+    max-height: 3.5em;
     display: block;
     min-width: 3em;
     min-height: 3em; 
     height: 100%;
-    margin: 0;
-    padding: 0;
-    border: 0;
 }

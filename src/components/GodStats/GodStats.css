@@ -1,8 +1,19 @@
 .GodStats {
     display: inline-block;
     flex-grow: 1;
-    background-color: cornflowerblue;
     padding: 20px;
     margin-left: auto;
     margin-right: auto;
+}
+
+.godSelection {
+    width: min-content
+}
+
+.godSelection > img, .godSelection > select {
+    display: block
+}
+
+.god-selection-menu {
+    width: 100%
 }

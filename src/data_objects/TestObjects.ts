@@ -55,7 +55,8 @@ shoesOfFocus.stats = StatBlock({
     cooldownReduction: 0.10,
     moveSpeed: 0.18
 });
-shoesOfFocus.image = process.env.PUBLIC_URL + '/images/items/' + shoesOfFocus.name + '.jpg';
+//shoesOfFocus.image = process.env.PUBLIC_URL + '/images/items/' + shoesOfFocus.name + '.jpg';
+shoesOfFocus.image = itemImagePath(shoesOfFocus.name)
 
 export {shoesOfFocus};
 
@@ -68,6 +69,11 @@ shoesOfTheMagi.stats = StatBlock({
     lifesteal: 0.08,
     moveSpeed: 0.18
 });
-shoesOfTheMagi.image = process.env.PUBLIC_URL + '/images/items/' + shoesOfTheMagi.name + '.jpg';
+//shoesOfTheMagi.image = process.env.PUBLIC_URL + '/images/items/' + shoesOfTheMagi.name + '.jpg';
+shoesOfTheMagi.image = itemImagePath(shoesOfTheMagi.name)
 
 export {shoesOfTheMagi};
+
+function itemImagePath(itemName: string): string {
+    return "https://web2.hirez.com/smite/item-icons/" + itemName.toLowerCase().replace(/\s/g, "-") + ".jpg";
+}

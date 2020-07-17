@@ -25,8 +25,10 @@ const GodStats = ({buildIdentifier}: BuildID) => {
 
     const godStats = ({image}: ImageUrl) =>
         <div className="GodStats">
-            <img src={image} alt='the selected god' aria-label={'god image ' + buildIdentifier} ></img>
-            <GodSelector buildIdentifier={buildIdentifier}></GodSelector>
+            <div className="godSelection">
+                <GodSelector buildIdentifier={buildIdentifier}></GodSelector>
+                <img src={image} alt='the selected god' aria-label={'god image ' + buildIdentifier} ></img>
+            </div>
             <StatTable buildIdentifier={buildIdentifier}></StatTable>
         </div>
     const Connected = connect(mapStateToGodImage)(godStats);

@@ -1,7 +1,6 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import UserEvent from '@testing-library/user-event';
-import App from './App';
 import { Provider } from 'react-redux';
 import store, { buildIdentifier } from '../../redux/store';
 import GodStats from '../GodStats/GodStats';
