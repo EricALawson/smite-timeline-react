@@ -44,12 +44,13 @@ const ItemPicker = ({isSelectorOpen, slot}: SelectorProps) => {
     
     return (
         <dialog 
-            className='border-gradient'
-            open={isSelectorOpen}  //this was broken by some styling, so we are using display: none
-            style={isSelectorOpen ? {} : {display: 'none'}}
+            className='border-gradient item-picker'
+            open={isSelectorOpen}  
+            //style={isSelectorOpen ? {} : {display: 'none'}} //some css styling interferes with hiding the ItemPicker, this will force it to hide.
             role='form'
-            aria-label='item picker'>
-            <div className='item-picker major-container'>
+            aria-label='item picker'
+        >
+            <div className='major-container'>
                 <div className='search'>
                     <div className='filters'>
                         GENERAL

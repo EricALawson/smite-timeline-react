@@ -6,32 +6,33 @@ body {
 
 body, :root {
   --light-blue-lines: cornflowerblue;
-  --dark-grey-background: rgba(15, 15, 30, .95);
+  --dark-grey-background: rgba(20, 20, 30, .95);
   --light-corners: linear-gradient(to top left, cornflowerblue, rgba(0,0,0,0) 25%, rgba(0,0,0,0) 75%, cornflowerblue),
                    linear-gradient(to top right, cornflowerblue, rgba(0,0,0,0) 25%, rgba(0,0,0,0) 75%, cornflowerblue);
+  --two-light-corners: linear-gradient(to top left, cornflowerblue, rgba(0,0,0,0) 25%, rgba(0,0,0,0) 75%, cornflowerblue);
   color: var(--light-blue-lines);
   font-size: 100%;
 }
 
 .major-container {
-  position: relative;
+  display: flex;
   background: var(--dark-grey-background);
   color: var(--light-blue-lines);
   background-clip: padding-box;
+  padding: 10px;
 }
 
-.major-container::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  margin: -2px;
+.border-gradient {
+  padding: 2px;
   background: var(--light-corners);
-  z-index: -1;
-} 
-
+  border: none;
+}
+.border-gradient > div {
+  background-color: var(--dark-grey-background);
+  width: 100%;
+  height: 100%;
+  margin: auto;
+}
 
 .ant-btn:hover, .ant-dropdown-menu-item:hover {
   background-color: var(--dark-grey-background);

@@ -17,9 +17,11 @@ type NameValPair = {
 
 const GodStats = ({buildIdentifier}: BuildID) => {
     return(
-        <div className="GodStats major-container">
-            <GodSelector buildIdentifier={buildIdentifier}></GodSelector>
-            <StatTable buildIdentifier={buildIdentifier}></StatTable>
+        <div className='GodStats border-gradient'>
+            <div className=" major-container">
+                <GodSelector buildIdentifier={buildIdentifier}></GodSelector>
+                <StatTable buildIdentifier={buildIdentifier}></StatTable>
+            </div>
         </div>
     )
 }
