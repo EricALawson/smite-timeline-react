@@ -1,24 +1,60 @@
 @import '~antd/dist/antd.css';
 
+body {
+  background: black;
+}
+
+body, :root {
+  --light-blue-lines: cornflowerblue;
+  --dark-grey-background: rgba(15, 15, 30, .95);
+  --light-corners: linear-gradient(to top left, cornflowerblue, rgba(0,0,0,0) 25%, rgba(0,0,0,0) 75%, cornflowerblue),
+                   linear-gradient(to top right, cornflowerblue, rgba(0,0,0,0) 25%, rgba(0,0,0,0) 75%, cornflowerblue);
+  color: var(--light-blue-lines);
+  font-size: 100%;
+}
+
+.major-container {
+  position: relative;
+  background: var(--dark-grey-background);
+  color: var(--light-blue-lines);
+  background-clip: padding-box;
+}
+
+.major-container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: -2px;
+  background: var(--light-corners);
+  z-index: -1;
+} 
+
+
+.ant-btn:hover, .ant-dropdown-menu-item:hover {
+  background-color: var(--dark-grey-background);
+  background: linear-gradient(180deg, rgba(100,149,237,1) 0%, var(--dark-grey-background) 20%, var(--dark-grey-background) 80%, rgba(100,149,237,1) 100%);
+}
+
+.ant-btn, .ant-dropdown-menu {
+  background-color: var(--dark-grey-background);
+  border: var(--light-blue-lines) solid 2px;
+  color: var(--light-blue-lines)
+}
+
+.ant-dropdown-menu-item {
+  color: var(--light-blue-lines);
+}
+
+
 .App {
   display: flex;
   flex-flow: row;
   font-family: sans-serif;
   height: 100%;
   width: 100%;
-  background-color: black;
-  border: cornflowerblue solid 2px;
-  color: cornflowerblue
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  padding: 20px;
 }
 

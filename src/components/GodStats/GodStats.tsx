@@ -10,29 +10,18 @@ import { buildIdentifier } from '../../redux/store';
 type BuildID = {
     buildIdentifier: buildIdentifier
 }
-type ImageUrl = {
-    image: string
-}
 type NameValPair = {
     name: keyof StatBlock,
     val: number
 }
 
 const GodStats = ({buildIdentifier}: BuildID) => {
-    const mapStateToGodImage = (state: any) => {
-        return {image: state[buildIdentifier].god.image}
-    }
-
-    const godStats = ({image}: ImageUrl) =>
-        <div className="GodStats">
-            <div className="godSelection">
-                <GodSelector buildIdentifier={buildIdentifier}></GodSelector>
-                <img src={image} alt='the selected god' aria-label={'god image ' + buildIdentifier} ></img>
-            </div>
+    return(
+        <div className="GodStats major-container">
+            <GodSelector buildIdentifier={buildIdentifier}></GodSelector>
             <StatTable buildIdentifier={buildIdentifier}></StatTable>
         </div>
-    const Connected = connect(mapStateToGodImage)(godStats);
-    return (<Connected></Connected>)
+    )
 }
 
 export default GodStats;
@@ -63,46 +52,33 @@ const StatTable = ({buildIdentifier}: BuildID) => {
 
     return(
         <table><tbody>
-            <tr>
                 {displayStat('health')}
                 {displayStat('mana')}
-            </tr>
-            <tr>
                 {displayStat('hp5')}
                 {displayStat('mp5')}
-            </tr>
-            <tr>
                 {displayStat('power')}
                 {displayStat('critChance')}
-            </tr>
-            <tr>
                 {displayStat('flatPenetration')}
                 {displayStat('percentPenetration')}
-            </tr>
-            <tr>
                 {displayStat('attackSpeed')}
-            </tr>
-            <tr>
                 {displayStat('physicalProtections')}
                 {displayStat('magicalProtections')}
-            </tr>
-            <tr>
                 {displayStat('moveSpeed')}
-            </tr>
-            <tr>
                 {displayStat('cooldownReduction')}
-            </tr>
-            <tr>
                 {displayStat('crowdControlReduction')}
-            </tr>
         </tbody></table>
     );
 }
 
 const StatItem = (props: NameValPair) => {
     return(
-        <td>
-            <span>{props.name}: </span><span>{props.val}</span>
-        </td>
+        <tr>
+            <td className='stat-name'>
+                {props.name}:
+            </td>
+            <td className='stat-value'>
+              {props.val.toFixed(0)}  
+            </td>
+        </tr>
     )
 }

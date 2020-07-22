@@ -1,31 +1,74 @@
 
 dialog::backdrop {
-    background: rgba(47, 79, 79, 0.0.5);
-
+    background: rgba(47, 79, 79, 0.1);
 }
 
-dialog {
-    background: navy;
-    padding: 0;
-    border: 0;
+
+.item-picker {
+    width: 100%;
+    --black-recess: rgba(10, 10, 10, .9);
+    display: flex;
+    flex-direction: row;
+    padding: 10px;
+    background: var(--dark-grey-background);
 }
 
-form {
-    padding: 1em;
+.border-gradient {
+    display: flex;
+
+    padding: 2px;
+    margin-top: 30px;
+    margin-bottom: 40px;
+    min-width: 80%;
+    min-height: 80%;
+    background: var(--light-corners);
+    border: none;
 }
 
-.search, .item-view {
-    display: inline-block;
+ 
+
+.search {
+    display: flex;
+    flex-direction: row;
+    flex: 2 0 60%;
     height: 100%;
 }
 
+.filters {
+    flex: 0 0 auto;
+    border: cornflowerblue solid 2px;
+}
+
+.filter-list {
+    width: fit-content;
+}
+
+.search-items-and-input {
+    display: flex;
+    flex-direction: column;
+    flex: 1 0 auto;
+    justify-content: space-between;
+}
+
 ul.search-results {
+    display: flex;
     overflow: hidden;
     overflow-y: scroll;
-    display: flex;
+    flex: 1 0 80%;
+    background-color: var(--black-recess);
+    border: cornflowerblue solid 2px;
+    margin: 2px;
     flex-wrap: wrap;
     flex-direction: row;
     list-style-type: none;
+}
+
+.search-input {
+    flex: 0 0 auto;
+    background-color: var(--black-recess);
+    border: var(--light-blue-lines) solid 1px;
+    border-radius: 5px;
+    margin: 2px;
 }
 
 li.item-search-result {
@@ -34,7 +77,30 @@ li.item-search-result {
     padding: 1px;
 }
 
-button {
-    background: silver;
-    opacity: 100%;
+.item-details {
+    flex: 1 0 auto;
+    min-height: 80%;
+    border: cornflowerblue solid 2px;
+    margin-left: 4px;
+    margin-bottom: 4px;
+}
+
+.item-view {
+    display: flex;
+    flex-direction: column;
+    min-width: max-content;
+    width: 30%;
+    min-height: 100%;
+    flex: 1 0 auto;
+}
+
+.control-button-container {
+    flex: 0 0 auto;
+    display: flex;
+    justify-content: center;
+    justify-self: flex-end;
+}
+
+.control-button {
+    margin-left: 4px;
 }

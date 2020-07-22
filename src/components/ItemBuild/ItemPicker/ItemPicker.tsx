@@ -4,6 +4,7 @@ import store, { buildIdentifier, buildSlices } from '../../../redux/store';
 import { connect } from 'react-redux';
 import { closeItemPicker } from '../../../redux/reducers/ItemPickerSlice';
 import { shoesOfTheMagi } from '../../../data_objects/TestObjects';
+import { Button} from 'antd';
 
 type Slot = {
     buildID: buildIdentifier,
@@ -42,47 +43,59 @@ const ItemPicker = ({isSelectorOpen, slot}: SelectorProps) => {
     }
     
     return (
-            <dialog 
-                className='Item-selector' 
-                open={isSelectorOpen}
-                role='form'
-                aria-label='item picker'>
-                    <div className='search'>
-                        <div className='vertical-container'>
-                            Item Name:
-                            <input type='search'></input>
-                            <div className='horizontal-container'>
-                                <div className='filters'>
-                                    GENERAL
-                                    <ul>
+        <dialog 
+            className='border-gradient'
+            open={isSelectorOpen}  //this was broken by some styling, so we are using display: none
+            style={isSelectorOpen ? {} : {display: 'none'}}
+            role='form'
+            aria-label='item picker'>
+            <div className='item-picker major-container'>
+                <div className='search'>
+                    <div className='filters'>
+                        GENERAL
+                        <ul className='filter-list'>
 
-                                    </ul>
-                                    OFFENSIVE
-                                    <ul>
+                        </ul>
+                        OFFENSIVE
+                        <ul className='filter-list'>
 
-                                    </ul>
-                                    DEFENSIVE
-                                    <ul>
+                        </ul>
+                        DEFENSIVE
+                        <ul className='filter-list'>
 
-                                    </ul>
-                                    UTILITY
-                                    <ul>
+                        </ul>
+                        UTILITY
+                        <ul className='filter-list'>
 
-                                    </ul>
-                                </div>
-                                <ul className='search-results'>
-                                    <li className='item-search-result'>dummy1</li>
-                                    <li className='item-search-result'>dummy2</li>
-                                    <li className='item-search-result'>dummy3</li>
-                                </ul>
-                            </div>
-                        </div>
+                        </ul>
                     </div>
-                    <div className='item-view'>
-                    <button onClick={closeSelector}>Cancel</button>
-                    <button onClick={selectItem}>Select Item</button>
+                    <div className='search-items-and-input'>
+                        <input
+                            className='search-input'
+                            type='search'
+                        ></input>
+                        <ul className='search-results'>
+                            <li className='item-search-result'>dummy1</li>
+                            <li className='item-search-result'>dummy2</li>
+                            <li className='item-search-result'>dummy3</li>
+                        </ul>
                     </div>
-            </dialog>
+                </div>
+                <div className='item-view'>
+                    <div className='item-details'>
+                        
+                    </div>
+                    <div className='control-button-container'>
+                        <Button
+                            className='control-button'
+                            onClick={closeSelector}>Cancel</Button>
+                        <Button 
+                            className='control-button'
+                            onClick={selectItem}>Select Item</Button>
+                    </div>
+                </div>  
+            </div>
+        </dialog>
     )
 }
 
