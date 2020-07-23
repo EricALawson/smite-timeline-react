@@ -1,32 +1,43 @@
 import React from 'react';
 import './ItemSlot.css';
 import Item from '../../../data_objects/Item';
-import { Slot, openItemPicker } from '../../../redux/reducers/ItemPickerSlice';
-import store from '../../../redux/store';
+import { Slot } from '../../../redux/reducers/ItemPickerSlice';
+import { connect } from 'react-redux';
 
 type SlotProps = {
     item: Item,
     slot: Slot
 }
+type DispatchProp = ReturnType<typeof mapDispatch>
+
+const mapDispatch = (dispatch: any) => { 
+    return {
+        openItemPicker: (slot: Slot) => { 
+            const action = {
+                type: 'itemPicker/openItemPicker',
+                payload: slot
+            }
+            dispatch(action) 
+        } 
+    }
+};
 
 const ItemSlot = ({ item, slot}: SlotProps) => {
-    const openSelector = () => {
-        
-        let action = openItemPicker(slot)
-        store.dispatch(action)
-    };
 
-    return (
-        <li>
-            <img 
-                className='item-slot' 
-                src={item.image} 
-                alt='selected item' 
-                onClick={openSelector} 
-                role='button'
-                aria-label='item slot'></img>
-        </li>
-    )
+    const component = ({openItemPicker}: DispatchProp) =>  {
+        const open = () => openItemPicker(slot)
+        return (<li>
+                    <img 
+                        className='item-slot' 
+                        src={item.image} 
+                        alt='selected item' 
+                        onClick={open} 
+                        role='button'
+                        aria-label='item slot'></img>
+                </li>)
+};
+    const ConnectedComponent = connect(null, mapDispatch)(component);
+    return <ConnectedComponent></ConnectedComponent>
 }
 
 

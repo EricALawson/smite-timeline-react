@@ -1,19 +1,19 @@
 import React from 'react';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent } from '../../test-utils';
 import UserEvent from '@testing-library/user-event';
-import { Provider } from 'react-redux';
-import store, { buildIdentifier } from '../../redux/store';
-import GodStats from '../GodStats/GodStats';
+import { buildIdentifier } from '../../redux/store';
 import ItemBuild from '../ItemBuild/ItemBuild';
 import ItemPicker from '../ItemBuild/ItemPicker/ItemPicker';
 import GodSelector from '../GodStats/GodSelector';
 
 
+
+
 test('Clicking the ItemSlot makes the ItemPicker visible', async () => {
-    render(<Provider store={store}>
+    render(<div>
         <ItemBuild buildIdentifier={buildIdentifier.left}></ItemBuild>
         <ItemPicker></ItemPicker>
-    </Provider>)
+    </div>)
     const slots = screen.getAllByRole('button', {name: /item slot/i});
     const slot = slots[0];
     UserEvent.click(slot)
@@ -21,11 +21,15 @@ test('Clicking the ItemSlot makes the ItemPicker visible', async () => {
     expect(picker).toHaveAttribute('open', "");
 });
 
+test('The Item Picker is hidden when the app loads', () => {
+    render( <ItemPicker></ItemPicker>);
+    
+    const picker = screen.queryByRole('form', {name: /item picker/i});
+    expect(picker).not.toBeInTheDocument();
+});
 
 test('Selecting a God changes the god card image', async () => {
-    render(<Provider store={store}>
-            <GodSelector buildIdentifier={buildIdentifier.left}></GodSelector>
-        </Provider>)
+    render(<GodSelector buildIdentifier={buildIdentifier.left}></GodSelector>);
     const menuMouseOver = screen.getByText(/select god/i)
     fireEvent.mouseEnter(menuMouseOver);
     const leftGodInput = await screen.findByRole('menuitem', {name: /select cerberus left/i});

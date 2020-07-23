@@ -38,14 +38,18 @@ const buildSlices = {
 
 export {buildSlices};
 
+const rootReducer = {
+    left: leftBuild.reducer,
+    right: rightBuild.reducer,
+    time: timeReducer,
+    timeRange: timeRangeReducer,
+    itemPicker: itemPicker.reducer
+};
+
+export {rootReducer}
+
 const store = configureStore({
-    reducer: {
-        left: leftBuild.reducer,
-        right: rightBuild.reducer,
-        time: timeReducer,
-        timeRange: timeRangeReducer,
-        itemPicker: itemPicker.reducer
-    }
+    reducer: rootReducer
 });
 
 export default store;
