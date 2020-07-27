@@ -8,10 +8,5 @@ const timeReducer = createReducer(0, {
     }
 });
 
-const timeRangeReducer = createReducer(3600, {
-    setRange: (state: number, action: PayloadAction<number>) => {
-        return action.payload;
-    }
-});
 
-export {timeReducer, timeRangeReducer};
+export {timeReducer};

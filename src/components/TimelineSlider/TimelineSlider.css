@@ -5,11 +5,29 @@
 }
 
 .slidercontainer {
-    display: inline-block;
+    display: block;
 }
 
 #time-slider {
     -webkit-appearance: slider-vertical;
     writing-mode: bt-lr;
     height: 100%;
+}
+
+.ant-slider, .ant-slider-mark {
+    width: auto !important;
+}
+.ant-slider-mark, .ant-slider-mark-text {
+    position: relative;
+}
+.ant-slider:hover .ant-slider-rail {
+    background-color: rgb(126, 126, 126);
+}
+
+.ant-slider-rail, div.ant-slider-rail:hover, div.ant-slider-rail::selection {
+    background: rgb(126, 126, 126);
+}
+
+.ant-slider-track, ant-slider:hover ant-slider-track {
+    background-color: #1890ff;
 }

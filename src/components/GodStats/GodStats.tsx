@@ -5,7 +5,7 @@ import makeStatsSelector from '../../redux/selectors/StatsSelector';
 import Build from '../../data_objects/Build';
 import StatBlock from '../../data_objects/StatBlock';
 import GodSelector from './GodSelector';
-import { buildIdentifier } from '../../redux/store';
+import { buildIdentifier, RootState } from '../../redux/store';
 
 type BuildID = {
     buildIdentifier: buildIdentifier
@@ -28,11 +28,11 @@ const GodStats = ({buildIdentifier}: BuildID) => {
 
 export default GodStats;
 
-const StatTable = ({buildIdentifier}: BuildID) => {
-    let statsSelector = makeStatsSelector();
+const statsSelector = makeStatsSelector();
 
-    const displayStat = (name: keyof StatBlock) => {
-        const mapStateToProps = (state: any) => {
+const StatTable = ({buildIdentifier}: BuildID) => {
+        const displayStat = (name: keyof StatBlock) => {
+        const mapStateToProps = (state: RootState) => {
             let build: Build = state[buildIdentifier];
             let events = statsSelector(build);
             events = events.filter(event => event.time <= state.time);

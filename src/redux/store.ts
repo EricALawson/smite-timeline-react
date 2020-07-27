@@ -1,10 +1,10 @@
 
-import {configureStore, createSlice} from '@reduxjs/toolkit';
+import {configureStore, createSlice, combineReducers} from '@reduxjs/toolkit';
 import godReducer from './reducers/GodReducer';
 import {setItemAt, removeItemAt} from './reducers/itemReducer';
 import killTimingReducer from './reducers/KillTimingReducer';
 import Build from '../data_objects/Build';
-import {timeReducer, timeRangeReducer} from './reducers/TimelineReducer';
+import {timeReducer} from './reducers/TimelineReducer';
 import { Ares } from '../data_objects/TestObjects';
 import itemPicker from './reducers/ItemPickerSlice';
 
@@ -38,18 +38,20 @@ const buildSlices = {
 
 export {buildSlices};
 
-const rootReducer = {
+const rootReducer = combineReducers({
     left: leftBuild.reducer,
     right: rightBuild.reducer,
     time: timeReducer,
-    timeRange: timeRangeReducer,
     itemPicker: itemPicker.reducer
-};
+});
 
 export {rootReducer}
 
 const store = configureStore({
     reducer: rootReducer
 });
+
+type RootState = ReturnType<typeof rootReducer>;
+export type { RootState };
 
 export default store;

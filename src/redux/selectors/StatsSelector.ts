@@ -7,7 +7,8 @@ import Build from "../../data_objects/Build";
 
 type BuildEvent = {
     time: number,
-    stats: StatBlock
+    stats: StatBlock,
+    type: string
 }
 
 const selectItem = (state: Build) => state.items;
@@ -22,7 +23,8 @@ const makeGodEventSelector = () => {
             let levelEvents: BuildEvent[] = []
             levelEvents.push( ...levelTimes.map(time => ({
                 time: time,
-                stats: god.perLevelStats
+                stats: god.perLevelStats,
+                type: 'level'
             })));
 
             levelEvents[0].stats = god.baseStats;
@@ -49,7 +51,8 @@ const makeItemEventSelector = () => {
             for (let i = 0; i < itemTimes.length; i++) {
                 itemEvents.push({
                     time: itemTimes[i],
-                    stats: items[i].stats
+                    stats: items[i].stats,
+                    type: 'item finished'
                 });
         }
         return itemEvents;
@@ -78,7 +81,8 @@ const makeStatsSelector = () => {
                 sum = add(sum, event.stats);
                 summed.push({
                     time: event.time,
-                    stats: Object.assign({}, sum)
+                    stats: Object.assign({}, sum),
+                    type: event.type
                 })
             }
             return summed;

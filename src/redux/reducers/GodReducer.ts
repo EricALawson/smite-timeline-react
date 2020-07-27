@@ -4,12 +4,11 @@ import Build from '../../data_objects/Build';
 
 
 const godReducer = (state: Build, action: PayloadAction<God>) => {
-    console.log('godReducer')
-            return Build(
-                action.payload,
-                state.items,
-                state.killTiming
-            )
-        };
+    return Build(
+        action.payload,
+        state.items,
+        state.killTiming
+    )
+};
 
 export default godReducer;
