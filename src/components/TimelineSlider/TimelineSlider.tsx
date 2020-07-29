@@ -3,15 +3,14 @@ import './TimelineSlider.css';
 import { connect } from 'react-redux';
 import {Slider} from 'antd';
 import { createAction } from '@reduxjs/toolkit';
-import { SliderValue } from 'antd/lib/slider';
+import { SliderValue, SliderMarks } from 'antd/lib/slider';
 import { buildIdentifier, RootState } from '../../redux/store';
 import ItemSlot from '../ItemBuild/ItemSlot/ItemSlot';
 import { shoesOfFocus } from '../../data_objects/TestObjects';
-import makeStatsSelector from '../../redux/selectors/StatsSelector';
+import makeStatsSelector, { BuildEvent, ItemEvent } from '../../redux/selectors/StatsSelector';
 
 
 type DispatchProps = ReturnType<typeof mapDispatchToProps>
-
 const mapDispatchToProps = (dispatch: any) => {
     return {
         changeTime: (value: SliderValue) => {
@@ -23,7 +22,6 @@ const mapDispatchToProps = (dispatch: any) => {
 }
 
 type StateProps = ReturnType<typeof mapState>
-
 const mapState = (state: RootState) => {
     const leftEvents = makeStatsSelector()(state.left);
     const rightEvents = makeStatsSelector()(state.right);
@@ -35,16 +33,26 @@ const mapState = (state: RootState) => {
         rightEvents: rightEvents,
         timeRange: timeRange
     }
-        
-    
+}
+
+function isItemEvent(event: BuildEvent): event is ItemEvent {
+    return (event as ItemEvent).item !== undefined;
 }
 
 function TimelineSlider({changeTime, leftEvents, rightEvents, timeRange}: DispatchProps & StateProps) {
-    const marks = {
-        50: {
-            label: <ItemSlot slot={ {buildID: buildIdentifier.left, index: 0} } item={shoesOfFocus}></ItemSlot>
+    const marks: SliderMarks = {};
+    leftEvents.forEach((event: BuildEvent, index: number) => {
+        console.log(event);
+        if(isItemEvent(event)) {
+            marks[event.time] = {
+                label: <ItemSlot 
+                    slot={ {buildID: buildIdentifier.left, index: index}} 
+                    item={event.item}
+                ></ItemSlot>
+            }
         }
-    }
+    });
+    console.log(marks);
 
     return <div className="slidercontainer">
         <Slider

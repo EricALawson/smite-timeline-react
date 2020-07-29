@@ -17,6 +17,11 @@
 .ant-slider, .ant-slider-mark {
     width: auto !important;
 }
+.ant-slider-mark {
+    display: flex;
+    flex-direction: column;
+}
+
 .ant-slider-mark, .ant-slider-mark-text {
     position: relative;
 }

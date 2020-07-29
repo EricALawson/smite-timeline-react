@@ -5,11 +5,16 @@ import God from "../../data_objects/God";
 import KillTiming, { getTimeForGold, getLevelTimes } from "../../data_objects/KillTiming";
 import Build from "../../data_objects/Build";
 
-type BuildEvent = {
+export interface BuildEvent {
     time: number,
     stats: StatBlock,
     type: string
 }
+
+export interface ItemEvent extends BuildEvent {
+    item: Item
+}
+
 
 const selectItem = (state: Build) => state.items;
 const selectGod = (state: Build) => state.god;
@@ -47,12 +52,13 @@ const makeItemEventSelector = () => {
                 prevCost += item.goldCost;
             });
             let itemTimes: number[] = itemCosts.map(gold => getTimeForGold(killTiming, gold));
-            let itemEvents: BuildEvent[] = [];
+            let itemEvents: ItemEvent[] = [];
             for (let i = 0; i < itemTimes.length; i++) {
                 itemEvents.push({
                     time: itemTimes[i],
                     stats: items[i].stats,
-                    type: 'item finished'
+                    type: 'item finished',
+                    item: items[i]
                 });
         }
         return itemEvents;
@@ -79,11 +85,9 @@ const makeStatsSelector = () => {
             let sum = StatBlock({});
             for (let event of statEvents) {
                 sum = add(sum, event.stats);
-                summed.push({
-                    time: event.time,
-                    stats: Object.assign({}, sum),
-                    type: event.type
-                })
+                let summedEvent = Object.assign({}, event);
+                summedEvent.stats = Object.assign({}, sum);
+                summed.push(summedEvent)
             }
             return summed;
         }
