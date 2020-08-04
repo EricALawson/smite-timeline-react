@@ -26,15 +26,15 @@ const ItemSlot = ({ item, slot}: SlotProps) => {
 
     const component = ({openItemPicker}: DispatchProp) =>  {
         const open = () => openItemPicker(slot)
-        return (<li>
-                    <img 
-                        className='item-slot' 
-                        src={item.image} 
-                        alt='selected item' 
-                        onClick={open} 
-                        role='button'
-                        aria-label='item slot'></img>
-                </li>)
+        return (
+            <img 
+                className={'item-slot'} 
+                src={item.image} 
+                alt='selected item' 
+                onClick={open} 
+                role='button'
+                aria-label='item slot'></img>
+        )
 };
     const ConnectedComponent = connect(null, mapDispatch)(component);
     return <ConnectedComponent></ConnectedComponent>

@@ -1,0 +1,28 @@
+.event-group {
+    display:flex;
+    min-width: 100vw;
+}
+
+.event-group-side {
+    flex: 1;
+    display: flex;
+    padding: 0 1rem;
+}
+
+.level-event {
+    color: var(--light-blue-lines);
+    font-size: 150%;
+    min-width: 2rem;
+}
+
+.level-spacer {
+    min-width: 2rem;
+}
+
+.right {
+    flex-direction: row;
+}
+
+.left {
+    flex-direction: row-reverse;
+}

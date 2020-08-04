@@ -5,9 +5,10 @@ import {Slider} from 'antd';
 import { createAction } from '@reduxjs/toolkit';
 import { SliderValue, SliderMarks } from 'antd/lib/slider';
 import { buildIdentifier, RootState } from '../../redux/store';
-import ItemSlot from '../ItemBuild/ItemSlot/ItemSlot';
-import { shoesOfFocus } from '../../data_objects/TestObjects';
 import makeStatsSelector, { BuildEvent, ItemEvent } from '../../redux/selectors/StatsSelector';
+import { EmptySlot } from '../../data_objects/Item';
+import AddItemButton from '../ItemBuild/AddItemButton/AddItemButton';
+import SliderEventGroup from './SliderEventGroup';
 
 
 type DispatchProps = ReturnType<typeof mapDispatchToProps>
@@ -23,8 +24,8 @@ const mapDispatchToProps = (dispatch: any) => {
 
 type StateProps = ReturnType<typeof mapState>
 const mapState = (state: RootState) => {
-    const leftEvents = makeStatsSelector()(state.left);
-    const rightEvents = makeStatsSelector()(state.right);
+    const leftEvents = makeStatsSelector(buildIdentifier.left)(state.left);
+    const rightEvents = makeStatsSelector(buildIdentifier.right)(state.right);
     const timeRange = leftEvents[leftEvents.length -1] > rightEvents[rightEvents.length -1]
                         ? leftEvents[leftEvents.length -1].time
                         : rightEvents[rightEvents.length -1].time;
@@ -35,30 +36,41 @@ const mapState = (state: RootState) => {
     }
 }
 
-function isItemEvent(event: BuildEvent): event is ItemEvent {
-    return (event as ItemEvent).item !== undefined;
-}
+const Spacer = () => <div className='level-spacer'></div>
 
 function TimelineSlider({changeTime, leftEvents, rightEvents, timeRange}: DispatchProps & StateProps) {
     const marks: SliderMarks = {};
-    leftEvents.forEach((event: BuildEvent, index: number) => {
-        console.log(event);
-        if(isItemEvent(event)) {
-            marks[event.time] = {
-                label: <ItemSlot 
-                    slot={ {buildID: buildIdentifier.left, index: index}} 
-                    item={event.item}
-                ></ItemSlot>
-            }
+    const timeMap: Map<number, BuildEvent[]> = new Map();
+    leftEvents.concat(rightEvents).forEach((event: BuildEvent) => {
+        const otherEvents = timeMap.get(event.time);
+        if( !otherEvents) {
+            timeMap.set(event.time, [ event ])
+        } else {
+            timeMap.set(event.time, [...otherEvents, event ]);
         }
     });
+    timeMap.forEach(eventList => {
+        marks[eventList[0].time] = <SliderEventGroup events={eventList}></SliderEventGroup>
+    });
+    marks[timeRange + 60] = {
+        label: <div className='event-group'>
+                <div className='left event-group-side'>
+                    <Spacer></Spacer>
+                    <AddItemButton side={buildIdentifier.left}></AddItemButton>
+                </div>
+                <div className='right event-group-side'>
+                    <Spacer></Spacer>
+                    <AddItemButton side={buildIdentifier.right}></AddItemButton>
+                </div>
+            </div>
+    }
     console.log(marks);
 
     return <div className="slidercontainer">
         <Slider
             defaultValue={0}
             min={0}
-            max={timeRange}
+            max={timeRange + 60}
             vertical={true}
             reverse={true}
             onChange={changeTime}

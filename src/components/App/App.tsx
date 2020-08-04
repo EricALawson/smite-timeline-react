@@ -10,9 +10,7 @@ function App() {
   return (
     <div className="App">
         <GodStats buildIdentifier={buildIdentifier.left}></GodStats>
-        <ItemBuild buildIdentifier={buildIdentifier.left}></ItemBuild>
         <TimelineSlider />
-        <ItemBuild buildIdentifier={buildIdentifier.right}></ItemBuild>
         <GodStats buildIdentifier={buildIdentifier.right}></GodStats>
         <ItemPicker></ItemPicker>
     </div>

@@ -28,13 +28,13 @@ const GodStats = ({buildIdentifier}: BuildID) => {
 
 export default GodStats;
 
-const statsSelector = makeStatsSelector();
-
+var statsSelector: ReturnType<typeof makeStatsSelector> | null = null;
 const StatTable = ({buildIdentifier}: BuildID) => {
+        const selector = statsSelector ?? makeStatsSelector(buildIdentifier)
         const displayStat = (name: keyof StatBlock) => {
         const mapStateToProps = (state: RootState) => {
             let build: Build = state[buildIdentifier];
-            let events = statsSelector(build);
+            let events = selector(build);
             events = events.filter(event => event.time <= state.time);
             let stats = events[events.length - 1].stats; //the last event whose time is <= current time
             let val = stats[name]

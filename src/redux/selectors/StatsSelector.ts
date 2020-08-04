@@ -4,15 +4,25 @@ import Item from "../../data_objects/Item";
 import God from "../../data_objects/God";
 import KillTiming, { getTimeForGold, getLevelTimes } from "../../data_objects/KillTiming";
 import Build from "../../data_objects/Build";
+import { buildIdentifier } from "../store";
+import { Slot } from "../reducers/ItemPickerSlice";
 
-export interface BuildEvent {
+export type BuildEvent = ItemEvent | LevelEvent
+
+export interface ItemEvent {
+    type: 'item finished',
     time: number,
     stats: StatBlock,
-    type: string
+    item: Item,
+    slot: Slot
 }
 
-export interface ItemEvent extends BuildEvent {
-    item: Item
+export interface LevelEvent {
+    type: 'level',
+    time: number,
+    stats: StatBlock,
+    level: number,
+    slot: Slot
 }
 
 
@@ -20,16 +30,19 @@ const selectItem = (state: Build) => state.items;
 const selectGod = (state: Build) => state.god;
 const selectKillTiming = (state: Build) => state.killTiming;
 
-const makeGodEventSelector = () => {
+const makeGodEventSelector = (side: buildIdentifier) => {
     return createSelector( 
         [selectGod, selectKillTiming],
         (god: God, killTiming: KillTiming) => {
             let levelTimes: number[] = getLevelTimes(killTiming);
-            let levelEvents: BuildEvent[] = []
-            levelEvents.push( ...levelTimes.map(time => ({
+            let levelEvents: LevelEvent[] = []
+            levelEvents.push( ...levelTimes.map( (time, index) => ({
                 time: time,
                 stats: god.perLevelStats,
-                type: 'level'
+                type: 'level' as const,
+                level: index + 1,
+                slot: {buildID: side, index: index + 1}
+
             })));
 
             levelEvents[0].stats = god.baseStats;
@@ -41,7 +54,7 @@ const makeGodEventSelector = () => {
 
 export {makeGodEventSelector};
 
-const makeItemEventSelector = () => {
+const makeItemEventSelector = (side: buildIdentifier) => {
     return createSelector( 
         [selectItem, selectKillTiming],
         (items: Item[], killTiming: KillTiming) => {
@@ -58,7 +71,8 @@ const makeItemEventSelector = () => {
                     time: itemTimes[i],
                     stats: items[i].stats,
                     type: 'item finished',
-                    item: items[i]
+                    item: items[i],
+                    slot: {buildID: side, index: i}
                 });
         }
         return itemEvents;
@@ -66,9 +80,9 @@ const makeItemEventSelector = () => {
 }
 export {makeItemEventSelector};
 
-const makeEventSelector = () => {
+const makeEventSelector = (side: buildIdentifier) => {
     return createSelector(
-        [makeGodEventSelector(), makeItemEventSelector()],
+        [makeGodEventSelector(side), makeItemEventSelector(side)],
         (godEvents, itemEvents, ) => {
             var events: BuildEvent[] = [...godEvents, ...itemEvents];
             
@@ -77,9 +91,9 @@ const makeEventSelector = () => {
     );
 }
 
-const makeStatsSelector = () => {
+const makeStatsSelector = (side: buildIdentifier) => {
     return createSelector(
-        [makeEventSelector()],
+        [makeEventSelector(side)],
         (statEvents) => {
             let summed: BuildEvent[] = [];
             let sum = StatBlock({});

@@ -1,7 +1,7 @@
 import God from "./God";
 import Item, {EmptySlot} from "./Item";
 import KillTiming from "./KillTiming";
-import {shoesOfFocus} from './TestObjects';
+import {shoesOfFocus, shoesOfTheMagi} from './TestObjects';
 
 interface Build {
     god: God;
@@ -11,7 +11,7 @@ interface Build {
 
 const Build = (
         god:God = God(), 
-        items: Item[] = [shoesOfFocus, EmptySlot, EmptySlot, EmptySlot, EmptySlot, EmptySlot],
+        items: Item[] = [shoesOfFocus, shoesOfTheMagi],
         killTiming = KillTiming()
     ): Build => {
         return {god: god, items: items, killTiming: killTiming}
