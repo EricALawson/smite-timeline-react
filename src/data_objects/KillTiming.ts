@@ -41,7 +41,6 @@ export function getLevelTimes(killTiming: KillTiming): number[] {
             xp += minions.jungleBuffMinion.xp * 2 + minions.jungleBuffHolder.xp;
         }
     }
-    console.log(times);
     return times;
 }
 

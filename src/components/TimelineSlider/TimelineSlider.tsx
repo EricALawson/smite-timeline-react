@@ -9,6 +9,7 @@ import makeStatsSelector, { BuildEvent, ItemEvent } from '../../redux/selectors/
 import { EmptySlot } from '../../data_objects/Item';
 import AddItemButton from '../ItemBuild/AddItemButton/AddItemButton';
 import SliderEventGroup from './SliderEventGroup';
+import SliderTooltip from './SliderTooltip';
 
 
 type DispatchProps = ReturnType<typeof mapDispatchToProps>
@@ -64,17 +65,20 @@ function TimelineSlider({changeTime, leftEvents, rightEvents, timeRange}: Dispat
                 </div>
             </div>
     }
-    console.log(marks);
 
     return <div className="slidercontainer">
         <Slider
             defaultValue={0}
             min={0}
             max={timeRange + 60}
+            step={5}
             vertical={true}
             reverse={true}
             onChange={changeTime}
             marks={marks}
+            tooltipVisible={true}
+            tooltipPlacement='top'
+            tipFormatter={SliderTooltip}
         />
     </div>
 }

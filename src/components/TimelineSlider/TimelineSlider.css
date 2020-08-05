@@ -27,3 +27,7 @@
 .ant-slider-track, ant-slider:hover ant-slider-track {
     background-color: #1890ff;
 }
+
+.time-tooltip {
+    border: 2 solid var(--light-blue-lines);
+}

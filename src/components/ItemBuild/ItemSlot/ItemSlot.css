@@ -4,9 +4,6 @@ img.item-slot {
     border: 2px solid cornflowerblue;
     margin: 0px 2px 2px 2px;  
     padding: 2px;
-    position: relative;
-    top: 0;
-    left: 0;
     overflow: hidden;
     max-width: 3.5em;
     max-height: 3.5em;
