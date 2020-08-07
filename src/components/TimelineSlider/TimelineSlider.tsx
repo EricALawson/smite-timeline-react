@@ -5,8 +5,7 @@ import {Slider} from 'antd';
 import { createAction } from '@reduxjs/toolkit';
 import { SliderValue, SliderMarks } from 'antd/lib/slider';
 import { buildIdentifier, RootState } from '../../redux/store';
-import makeStatsSelector, { BuildEvent, ItemEvent } from '../../redux/selectors/StatsSelector';
-import { EmptySlot } from '../../data_objects/Item';
+import makeStatsSelector, { BuildEvent } from '../../redux/selectors/StatsSelector';
 import AddItemButton from '../ItemBuild/AddItemButton/AddItemButton';
 import SliderEventGroup from './SliderEventGroup';
 import SliderTooltip from './SliderTooltip';
@@ -53,7 +52,7 @@ function TimelineSlider({changeTime, leftEvents, rightEvents, timeRange}: Dispat
     timeMap.forEach(eventList => {
         marks[eventList[0].time] = <SliderEventGroup events={eventList}></SliderEventGroup>
     });
-    marks[timeRange + 60] = {
+    marks[timeRange + 90] = {
         label: <div className='event-group'>
                 <div className='left event-group-side'>
                     <Spacer></Spacer>
