@@ -5,7 +5,8 @@ import makeStatsSelector from '../../redux/selectors/StatsSelector';
 import Build from '../../data_objects/Build';
 import StatBlock from '../../data_objects/StatBlock';
 import GodSelector from './GodSelector';
-import { buildIdentifier, RootState } from '../../redux/store';
+import { RootState } from '../../redux/store';
+import buildIdentifier from "../../redux/buildIdentifier";
 
 type BuildID = {
     buildIdentifier: buildIdentifier

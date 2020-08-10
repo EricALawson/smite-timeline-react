@@ -4,7 +4,8 @@ import { connect } from 'react-redux';
 import {Slider} from 'antd';
 import { createAction } from '@reduxjs/toolkit';
 import { SliderValue, SliderMarks } from 'antd/lib/slider';
-import { buildIdentifier, RootState } from '../../redux/store';
+import { RootState } from '../../redux/store';
+import buildIdentifier from "../../redux/buildIdentifier";
 import makeStatsSelector, { BuildEvent } from '../../redux/selectors/StatsSelector';
 import AddItemButton from '../ItemBuild/AddItemButton/AddItemButton';
 import SliderEventGroup from './SliderEventGroup';
@@ -75,7 +76,7 @@ function TimelineSlider({changeTime, leftEvents, rightEvents, timeRange}: Dispat
             reverse={true}
             onChange={changeTime}
             marks={marks}
-            tooltipVisible={true}
+            //tooltipVisible={true} disabled until I figure out how to make the tooltip display under the ItemPicker.
             tooltipPlacement='top'
             tipFormatter={SliderTooltip}
         />

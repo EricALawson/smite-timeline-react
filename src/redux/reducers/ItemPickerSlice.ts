@@ -1,5 +1,5 @@
 import { createSlice, Action, PayloadAction } from "@reduxjs/toolkit"
-import { buildIdentifier } from "../store";
+import buildIdentifier from "../buildIdentifier";
 
 type Slot = {
     buildID: buildIdentifier,
@@ -18,7 +18,7 @@ const itemPicker = createSlice({
     initialState: {
         isOpen: false,
         slot: {
-            buildID: 'left',
+            buildID: buildIdentifier.left,
             index: 0
         }
     },

@@ -7,13 +7,7 @@ import Build from '../data_objects/Build';
 import {timeReducer} from './reducers/TimelineReducer';
 import { Ares } from '../data_objects/TestObjects';
 import itemPicker from './reducers/ItemPickerSlice';
-
-enum buildIdentifier {
-    left = 'left',
-    right = 'right'
-}
-
-export {buildIdentifier};
+import buildIdentifier from './buildIdentifier';
 
 const buildSlice = (name: buildIdentifier) => {
     return createSlice({

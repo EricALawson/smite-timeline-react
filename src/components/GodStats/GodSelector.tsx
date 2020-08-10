@@ -1,6 +1,6 @@
 import React from 'react'
 import GodProvider from '../../redux/GodProvider'
-import { buildIdentifier} from '../../redux/store'
+import buildIdentifier from "../../redux/buildIdentifier"
 import { Dropdown, Menu, Button } from 'antd'
 import MenuItem from 'antd/lib/menu/MenuItem'
 import { connect } from 'react-redux'

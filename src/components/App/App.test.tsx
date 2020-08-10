@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, screen, fireEvent } from '../../test-utils';
 import UserEvent from '@testing-library/user-event';
-import { buildIdentifier } from '../../redux/store';
+import buildIdentifier from "../../redux/buildIdentifier";
 import ItemBuild from '../ItemBuild/ItemBuild';
 import ItemPicker from '../ItemBuild/ItemPicker/ItemPicker';
 import GodSelector from '../GodStats/GodSelector';

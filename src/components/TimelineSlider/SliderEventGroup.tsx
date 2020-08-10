@@ -2,7 +2,7 @@ import { BuildEvent, ItemEvent, LevelEvent } from "../../redux/selectors/StatsSe
 import React from "react";
 import ItemSlot from "../ItemBuild/ItemSlot/ItemSlot";
 import "./SliderEventGroup.css";
-import { buildIdentifier } from "../../redux/store";
+import buildIdentifier from "../../redux/buildIdentifier";
 
 type Props = {
     events: BuildEvent[]

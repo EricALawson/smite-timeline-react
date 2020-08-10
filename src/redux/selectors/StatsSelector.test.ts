@@ -2,9 +2,10 @@ import makeStatsSelector, {makeGodEventSelector, makeItemEventSelector} from "./
 import Build from "../../data_objects/Build";
 import God from "../../data_objects/God";
 import StatBlock, { add } from "../../data_objects/StatBlock";
+import buildIdentifier from "../buildIdentifier";
 
 test('test god event selector', () => {
-    let selector = makeGodEventSelector();
+    let selector = makeGodEventSelector(buildIdentifier.left);
     let build = Build();
     let events = selector(build);
     expect(events.length).toBe(20);
@@ -14,14 +15,14 @@ test('test god event selector', () => {
 
 test('test item event selector', () => {
     let build = Build();
-    let selector = makeItemEventSelector();
+    let selector = makeItemEventSelector(buildIdentifier.left);
     let events = selector(build);
     expect(events.length).toBe(build.items.length)
 });
 
 test('test summed events selector', () => {
     let build = Build();
-    let selector = makeStatsSelector();
+    let selector = makeStatsSelector(buildIdentifier.left);
     let events = selector(build);
     expect(events[0].stats).toEqual(build.god.baseStats);
     expect(events[1].stats).toEqual(add(build.god.baseStats, build.god.perLevelStats));

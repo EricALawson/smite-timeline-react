@@ -4,7 +4,7 @@ import Item from "../../data_objects/Item";
 import God from "../../data_objects/God";
 import KillTiming, { getTimeForGold, getLevelTimes } from "../../data_objects/KillTiming";
 import Build from "../../data_objects/Build";
-import { buildIdentifier } from "../store";
+import buildIdentifier from "../buildIdentifier";
 import { Slot } from "../reducers/ItemPickerSlice";
 
 export type BuildEvent = ItemEvent | LevelEvent

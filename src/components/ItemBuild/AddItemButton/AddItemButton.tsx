@@ -2,7 +2,8 @@ import React from 'react';
 import { EmptySlot } from '../../../data_objects/Item';
 import { Slot } from '../../../redux/reducers/ItemPickerSlice';
 import { connect } from 'react-redux';
-import { buildIdentifier, RootState } from '../../../redux/store';
+import { RootState } from '../../../redux/store';
+import buildIdentifier from "../../../redux/buildIdentifier";
 
 type Props = {
     side: buildIdentifier

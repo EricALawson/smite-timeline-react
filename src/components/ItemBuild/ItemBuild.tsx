@@ -1,7 +1,7 @@
 import React from 'react';
 import './ItemBuild.css';
 import ItemSlot from './ItemSlot/ItemSlot';
-import { buildIdentifier } from '../../redux/store';
+import buildIdentifier from "../../redux/buildIdentifier";
 import { connect } from 'react-redux';
 import Item from '../../data_objects/Item';
 
