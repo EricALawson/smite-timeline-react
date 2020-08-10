@@ -18,8 +18,8 @@ const orderEventsByType = (events: BuildEvent[], side: buildIdentifier)  => {
                             .map(event => <div className='level-event'>{event.level}</div>)
         ordered.push(...levelEvents);
     }
-    let itemEvents = events.filter((event): event is ItemEvent => event.slot.buildID === 'right' && event.type === 'item finished')
-                            .map(event => <ItemSlot item={event.item} slot={event.slot}></ItemSlot>)
+    let itemEvents = events.filter((event): event is ItemEvent => event.slot.buildID === side && event.type === 'item finished')
+                            .map(event => <ItemSlot key={event.slot.index} item={event.item} slot={event.slot}></ItemSlot>)
     ordered.push(...itemEvents);
     return ordered;
 }
