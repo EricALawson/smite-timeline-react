@@ -1,7 +1,8 @@
 import React from 'react';
 import './ItemPicker.css';
-import store, { buildIdentifier, buildSlices } from '../../../redux/store';
-import { connect } from 'react-redux';
+import { RootState } from '../../../redux/store';
+import buildIdentifier from "../../../redux/buildIdentifier";
+import { useDispatch, useSelector } from 'react-redux';
 import { closeItemPicker } from '../../../redux/reducers/ItemPickerSlice';
 import { shoesOfTheMagi } from '../../../data_objects/TestObjects';
 import { Button} from 'antd';
@@ -16,61 +17,57 @@ type SelectorProps = {
     slot: Slot
 }
 
-const mapStateToProps = (state: any) => {
-    return {
-        isSelectorOpen: state.itemPicker.isOpen,
-        slot: state.itemPicker.slot
-    }
-}
 
-const ItemPicker = ({isSelectorOpen, slot}: SelectorProps) => {
 
-    const closeSelector = () => {
-        store.dispatch({type: closeItemPicker})
-    }
+const ItemPicker = () => {
+    const {isOpen, slot} = useSelector((state: RootState) =>  state.itemPicker);
+    const dispatch = useDispatch();
+    const closeSelector = () => dispatch({type: closeItemPicker.type})
+    
 
     //TODO: return item selected in the item picker instead of default shoesOfTheMagi
     const selectItem = () => {
         let action = {
-            type: buildSlices[slot.buildID].actions.setItemAt,
+            type: slot.buildID + '/setItemAt',
             payload: {
                 index: slot.index,
                 item: shoesOfTheMagi
             }
         }
-        store.dispatch(action);
+        dispatch(action);
         closeSelector();
     }
+
+    
     
     return (
         <dialog 
             className='border-gradient item-picker'
-            open={isSelectorOpen}  
+            open={isOpen}  
             //style={isSelectorOpen ? {} : {display: 'none'}} //some css styling interferes with hiding the ItemPicker, this will force it to hide.
             role='form'
             aria-label='item picker'
         >
             <div className='major-container'>
-                <div className='search'>
-                    <div className='filters'>
-                        GENERAL
-                        <ul className='filter-list'>
+                <div className='filters'>
+                    GENERAL
+                    <ul className='filter-list'>
 
-                        </ul>
-                        OFFENSIVE
-                        <ul className='filter-list'>
+                    </ul>
+                    OFFENSIVE
+                    <ul className='filter-list'>
 
-                        </ul>
-                        DEFENSIVE
-                        <ul className='filter-list'>
+                    </ul>
+                    DEFENSIVE
+                    <ul className='filter-list'>
 
-                        </ul>
-                        UTILITY
-                        <ul className='filter-list'>
+                    </ul>
+                    UTILITY
+                    <ul className='filter-list'>
 
-                        </ul>
-                    </div>
-                    <div className='search-items-and-input'>
+                    </ul>
+                </div>
+                <div className='search-items-and-input'>
                         <input
                             className='search-input'
                             type='search'
@@ -81,7 +78,6 @@ const ItemPicker = ({isSelectorOpen, slot}: SelectorProps) => {
                             <li className='item-search-result'>dummy3</li>
                         </ul>
                     </div>
-                </div>
                 <div className='item-view'>
                     <div className='item-details'>
                         
@@ -100,4 +96,4 @@ const ItemPicker = ({isSelectorOpen, slot}: SelectorProps) => {
     )
 }
 
-export default connect(mapStateToProps)(ItemPicker);
+export default ItemPicker;

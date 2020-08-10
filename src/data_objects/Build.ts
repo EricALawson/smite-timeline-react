@@ -1,5 +1,5 @@
 import God from "./God";
-import Item, {EmptySlot} from "./Item";
+import Item from "./Item";
 import KillTiming from "./KillTiming";
 import {shoesOfFocus, shoesOfTheMagi} from './TestObjects';
 

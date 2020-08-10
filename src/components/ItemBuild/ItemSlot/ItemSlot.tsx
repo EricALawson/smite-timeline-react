@@ -3,6 +3,7 @@ import './ItemSlot.css';
 import Item from '../../../data_objects/Item';
 import { Slot } from '../../../redux/reducers/ItemPickerSlice';
 import { connect } from 'react-redux';
+import { Dispatch } from '@reduxjs/toolkit';
 
 type SlotProps = {
     item: Item,
@@ -10,7 +11,7 @@ type SlotProps = {
 }
 type DispatchProp = ReturnType<typeof mapDispatch>
 
-const mapDispatch = (dispatch: any) => { 
+const mapDispatch = (dispatch: Dispatch) => { 
     return {
         openItemPicker: (slot: Slot) => { 
             const action = {
