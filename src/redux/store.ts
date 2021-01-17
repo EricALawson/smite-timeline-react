@@ -8,6 +8,7 @@ import {timeReducer} from './reducers/TimelineReducer';
 import { Ares } from '../data_objects/TestObjects';
 import itemPicker from './reducers/ItemPickerSlice';
 import buildIdentifier from './buildIdentifier';
+import ItemList from './reducers/ItemList';
 
 const buildSlice = (name: buildIdentifier) => {
     return createSlice({
@@ -36,7 +37,8 @@ const rootReducer = combineReducers({
     left: leftBuild.reducer,
     right: rightBuild.reducer,
     time: timeReducer,
-    itemPicker: itemPicker.reducer
+    itemPicker: itemPicker.reducer,
+    items: ItemList.reducer
 });
 
 export {rootReducer}

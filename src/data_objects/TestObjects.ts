@@ -77,3 +77,7 @@ export {shoesOfTheMagi};
 function itemImagePath(itemName: string): string {
     return "https://web2.hirez.com/smite/item-icons/" + itemName.toLowerCase().replace(/\s/g, "-") + ".jpg";
 }
+
+const defaultItems = [shoesOfFocus, shoesOfTheMagi] 
+
+export {defaultItems};

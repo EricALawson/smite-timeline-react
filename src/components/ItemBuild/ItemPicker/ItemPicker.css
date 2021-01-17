@@ -28,14 +28,14 @@ dialog::backdrop {
     flex: 1 0 auto;
     justify-content: space-between;
     padding: 0 6px;
+    align-items: stretch;
 }
 
-ul.search-results {
+.search-results {
     display: flex;
     overflow: hidden;
     overflow-y: scroll;
     flex: 1 0 auto;
-    background-color: var(--black-recess);
     border: var(--light-blue-lines) solid 1px;
     margin-bottom: 0;
     flex-wrap: wrap;
@@ -51,7 +51,7 @@ ul.search-results {
     margin-bottom: 2px;
 }
 
-li.item-search-result {
+.item-search-result {
     flex: 1 0 50%;
     box-sizing: border-box;
     padding: 1px;

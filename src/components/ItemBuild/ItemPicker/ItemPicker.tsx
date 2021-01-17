@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import './ItemPicker.css';
 import { RootState } from '../../../redux/store';
 import buildIdentifier from "../../../redux/buildIdentifier";
 import { useDispatch, useSelector } from 'react-redux';
 import { closeItemPicker } from '../../../redux/reducers/ItemPickerSlice';
-import { shoesOfTheMagi } from '../../../data_objects/TestObjects';
 import { Button} from 'antd';
+import ItemInfoBrief from './ItemInfoBrief';
+import { EmptySlot } from '../../../data_objects/Item';
+import FilterList from './FilterList';
 
 type Slot = {
     buildID: buildIdentifier,
@@ -17,29 +19,30 @@ type SelectorProps = {
     slot: Slot
 }
 
-
-
 const ItemPicker = () => {
-    const {isOpen, slot} = useSelector((state: RootState) =>  state.itemPicker);
-    const dispatch = useDispatch();
-    const closeSelector = () => dispatch({type: closeItemPicker.type})
-    
 
-    //TODO: return item selected in the item picker instead of default shoesOfTheMagi
+    const {isOpen, slot, selected, activeFilters} = useSelector((state: RootState) =>  state.itemPicker);
+    const dispatch = useDispatch();
+    const searchInput = useRef<HTMLInputElement>(null);
+
+    const closeSelector = () => dispatch({type: closeItemPicker.type});
+    
     const selectItem = () => {
-        let action = {
-            type: slot.buildID + '/setItemAt',
-            payload: {
-                index: slot.index,
-                item: shoesOfTheMagi
+        if (selected !== EmptySlot){
+            let action = {
+                type: slot.buildID + '/setItemAt',
+                payload: {
+                    index: slot.index,
+                    item: selected
+                }
             }
+            dispatch(action);
         }
-        dispatch(action);
         closeSelector();
     }
 
-    
-    
+    const allItems = useSelector((state: RootState) => state.items);
+
     return (
         <dialog 
             className='border-gradient item-picker'
@@ -49,34 +52,19 @@ const ItemPicker = () => {
             aria-label='item picker'
         >
             <div className='major-container'>
-                <div className='filters'>
-                    GENERAL
-                    <ul className='filter-list'>
-
-                    </ul>
-                    OFFENSIVE
-                    <ul className='filter-list'>
-
-                    </ul>
-                    DEFENSIVE
-                    <ul className='filter-list'>
-
-                    </ul>
-                    UTILITY
-                    <ul className='filter-list'>
-
-                    </ul>
-                </div>
+                <FilterList></FilterList>
                 <div className='search-items-and-input'>
                         <input
                             className='search-input'
+                            ref={searchInput}
                             type='search'
                         ></input>
-                        <ul className='search-results'>
-                            <li className='item-search-result'>dummy1</li>
-                            <li className='item-search-result'>dummy2</li>
-                            <li className='item-search-result'>dummy3</li>
-                        </ul>
+                        <div className='search-results'>
+                            {allItems.map(item => <ItemInfoBrief 
+                                item={item}
+                                itemFamily={null}
+                            ></ItemInfoBrief>)}
+                        </div>
                     </div>
                 <div className='item-view'>
                     <div className='item-details'>

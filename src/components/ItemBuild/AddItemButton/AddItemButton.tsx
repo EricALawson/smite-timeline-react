@@ -38,7 +38,7 @@ const AddItemButton = ({ side, openItemPicker, nextItemIndex }: Props & Dispatch
     const open = () => openItemPicker({buildID: side, index: nextItemIndex})
     return (<img 
                     className={'item-slot ' + side }
-                    src={undefined} 
+                    src={process.env.PUBLIC_URL + '/images/items/empty slot.png'} 
                     alt={'Add an item to ' + side + ' build'}
                     onClick={open} 
                     role='button'
@@ -48,4 +48,4 @@ const AddItemButton = ({ side, openItemPicker, nextItemIndex }: Props & Dispatch
 
 
 
-export default connect(mapState, mapDispatch)(AddItemButton);;
+export default connect(mapState, mapDispatch)(AddItemButton);
