@@ -48,7 +48,8 @@ body {
 .ant-btn, .ant-dropdown-menu {
   background-color: var(--dark-grey-background);
   border: var(--light-blue-lines) solid 2px;
-  color: var(--light-blue-lines)
+  color: var(--light-blue-lines);
+  pointer-events: auto;
 }
 
 .ant-dropdown-menu-item {

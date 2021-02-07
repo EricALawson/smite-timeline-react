@@ -1,12 +1,21 @@
+.ant-slider-mark-text {
+    pointer-events: none;
+}
+
 .event-group {
     display:flex;
     min-width: 100vw;
+    pointer-events: none;
 }
 
 .event-group-side {
     flex: 1;
     display: flex;
     padding: 0 1rem;
+    pointer-events: none;
+}
+.event-group-side * {
+    pointer-events: initial;
 }
 
 .level-event {
