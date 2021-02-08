@@ -14,11 +14,6 @@ type Slot = {
     index: number
 }
 
-type SelectorProps = {
-    isSelectorOpen: boolean,
-    slot: Slot
-}
-
 const ItemPicker = () => {
 
     const {isOpen, slot, selected, activeFilters} = useSelector((state: RootState) =>  state.itemPicker);
@@ -47,7 +42,6 @@ const ItemPicker = () => {
         <dialog 
             className='border-gradient item-picker'
             open={isOpen}  
-            //style={isSelectorOpen ? {} : {display: 'none'}} //some css styling interferes with hiding the ItemPicker, this will force it to hide.
             role='form'
             aria-label='item picker'
         >

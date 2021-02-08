@@ -40,6 +40,7 @@ const itemPicker = createSlice({
         openItemPicker: (state: ItemPickerState, action: PayloadAction<Slot>) => {
             let newState = Object.assign({}, state)
             newState.slot = action.payload
+            newState.isOpen = true;
             return newState;
         },
         setSelected: (state: ItemPickerState, action: PayloadAction<Item>) => {
