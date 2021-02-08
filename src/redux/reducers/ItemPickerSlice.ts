@@ -1,6 +1,7 @@
 import { createSlice, Action, PayloadAction } from "@reduxjs/toolkit"
 import buildIdentifier from "../buildIdentifier";
 import Item, { EmptySlot } from "../../data_objects/Item";
+import { FilterName } from "../../components/ItemBuild/ItemPicker/FilterList";
 
 type Slot = {
     buildID: buildIdentifier,
@@ -15,7 +16,7 @@ type ItemPickerState = {
     isOpen: boolean,
     slot: Slot,
     selected: Item,
-    activeFilters: ItemFilter[]
+    activeFilters: FilterName[]
 }
 
 
@@ -28,7 +29,7 @@ const itemPicker = createSlice({
             index: 0
         },
         selected: EmptySlot,
-        activeFilters: [] as ItemFilter[],
+        activeFilters: [] as FilterName[],
     },
     reducers: {
         closeItemPicker: (state: ItemPickerState, action: Action) => {
@@ -48,15 +49,17 @@ const itemPicker = createSlice({
             newState.selected = action.payload;
             return newState;
         },
-        toggleFilter: (state: ItemPickerState, action: PayloadAction<ItemFilter>) => {
-            let newState = Object.assign({}, state);
+        toggleFilter: (state: ItemPickerState, action: PayloadAction<FilterName>) => {
+            //I use Immer here to modify state because this next line causes immer to error 
+            //if I return a state object, because Immer thinks this line modifies the state, 
+            //and it wont allow modification to the proxy state and returning a new state, 
+            //which would likely be a bug. I think Immer is wrong about this line, but fighting it is a waste of time.
             let index = state.activeFilters.findIndex(filter => filter === action.payload);
             if (index > -1) {
-                newState.activeFilters.splice(index, 1);
+                state.activeFilters.splice(index, 1);
             } else {
-                newState.activeFilters.push(action.payload)
+                state.activeFilters.push(action.payload)
             }
-            return newState;
         }
     }
 })
