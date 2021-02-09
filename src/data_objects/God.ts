@@ -9,14 +9,12 @@ export interface GodBaseStats {
     attackProgression: number[],
     autoAttackPowerMultiplier: number
 }
-interface GodDesc {
+interface God {
     name: string;
     baseStats: StatBlock;
     perLevelStats: StatBlock;
     image: string;
 }
-
-type God = GodDesc  //TODO: & GodBaseStats;
 
 const God = (
     name: string = "No god selected",
