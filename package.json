@@ -1,5 +1,8 @@
 {
   "name": "smite-timeline",
+  "exports": {
+    "./StatBlock": "./src/data_objects/StatBlock.ts"
+  },
   "version": "0.1.0",
   "private": true,
   "homepage": "http://ericalawson.github.io/smite-timeline-react",
