@@ -10,8 +10,8 @@ export interface StatBlock {
     mp5: number;
     moveSpeed: number;
     attackSpeed: number;
-    physicalProtections: number;
-    magicalProtections: number;
+    physicalProtection: number;
+    magicalProtection: number;
     lifesteal: number;
     cooldownReduction: number;
     crowdControlReduction: number;
@@ -29,8 +29,8 @@ export function StatBlock(statMap: any): StatBlock {
         mp5: statMap.mp5 ? statMap.mp5 : 0,
         moveSpeed: statMap.moveSpeed ? statMap.moveSpeed : 0,
         attackSpeed: statMap.attackSpeed ? statMap.attackSpeed : 0,
-        physicalProtections: statMap.physicalProtections ? statMap.physicalProtections : 0,
-        magicalProtections: statMap.magicalProtections ? statMap.magicalProtections : 0,
+        physicalProtection: statMap.physicalProtection ? statMap.physicalProtection : 0,
+        magicalProtection: statMap.magicalProtection ? statMap.magicalProtection : 0,
         lifesteal: statMap.lifesteal ? statMap.lifesteal : 0,
         cooldownReduction: statMap.cooldownReduction ? statMap.cooldownReduction : 0,
         crowdControlReduction: statMap.crowdControlReduction ? statMap.crowdControlReduction : 0
@@ -49,8 +49,8 @@ export function add(stats1: StatBlock, stats2: StatBlock): StatBlock {
         mp5: stats1.mp5 + stats2.mp5,
         moveSpeed: stats1.moveSpeed + stats2.moveSpeed,
         attackSpeed: stats1.attackSpeed + stats2.attackSpeed,
-        physicalProtections: stats1.physicalProtections + stats2.physicalProtections,
-        magicalProtections: stats1.magicalProtections + stats2.magicalProtections,
+        physicalProtection: stats1.physicalProtection + stats2.physicalProtection,
+        magicalProtection: stats1.magicalProtection + stats2.magicalProtection,
         lifesteal: stats1.lifesteal + stats2.lifesteal,
         cooldownReduction: stats1.cooldownReduction + stats2.cooldownReduction,
         crowdControlReduction: stats1.crowdControlReduction + stats2.crowdControlReduction
