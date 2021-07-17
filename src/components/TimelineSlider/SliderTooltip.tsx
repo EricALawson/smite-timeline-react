@@ -11,9 +11,9 @@ function formatTime(seconds: number) {
     ].filter(Boolean).join(':');
   }
 
-const SliderTooltip = (value: number) => {
+const SliderTooltip = (value?: number) => {
     return <div className='time-tooltip'>
-        {formatTime(value)}
+        {value && formatTime(value)}
     </div>
 }
 

@@ -1,6 +1,5 @@
-import God from "./God";
-import StatBlock from "./StatBlock";
-import Item from "./Item";
+
+import { God, Item, StatBlock } from "@smite-timeline/smite-game-objects";
 
 const Ares = God(
     'Ares',
@@ -45,32 +44,33 @@ const Cerberus = God(
 );
 
 export {Cerberus};
-
-let shoesOfFocus = Item();
-shoesOfFocus.goldCost = 1600;
-shoesOfFocus.name = "Shoes of Focus";
-shoesOfFocus.stats = StatBlock({
+let stats = StatBlock({
     mana: 250,
     power: 55,
     cooldownReduction: 0.10,
     moveSpeed: 0.18
 });
-//shoesOfFocus.image = process.env.PUBLIC_URL + '/images/items/' + shoesOfFocus.name + '.jpg';
-shoesOfFocus.image = itemImagePath(shoesOfFocus.name)
+let shoesOfFocus = Item(
+    "Shoes of Focus",
+    1600,
+    stats,
+    itemImagePath("Shoes of Focus")
+);
+
 
 export {shoesOfFocus};
 
-let shoesOfTheMagi = Item();
-shoesOfTheMagi.goldCost = 1550;
-shoesOfTheMagi.name = "Shoes of The Magi";
-shoesOfTheMagi.stats = StatBlock({
-    power: 75,
-    mana: 100,
-    lifesteal: 0.08,
-    moveSpeed: 0.18
-});
-//shoesOfTheMagi.image = process.env.PUBLIC_URL + '/images/items/' + shoesOfTheMagi.name + '.jpg';
-shoesOfTheMagi.image = itemImagePath(shoesOfTheMagi.name)
+let shoesOfTheMagi = Item(
+    "Shoes of The Magi",
+    1550,
+    StatBlock({
+        power: 75,
+        mana: 100,
+        lifesteal: 0.08,
+        moveSpeed: 0.18
+    }),
+    itemImagePath("Shoes of the Magi")
+);
 
 export {shoesOfTheMagi};
 

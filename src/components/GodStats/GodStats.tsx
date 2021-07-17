@@ -3,10 +3,10 @@ import './GodStats.css';
 import { connect } from 'react-redux';
 import makeStatsSelector from '../../redux/selectors/StatsSelector';
 import Build from '../../data_objects/Build';
-import StatBlock from '../../data_objects/StatBlock';
 import GodSelector from './GodSelector';
 import { RootState } from '../../redux/store';
 import buildIdentifier from "../../redux/buildIdentifier";
+import { StatBlock } from '@smite-timeline/smite-game-objects';
 
 type BuildID = {
     buildIdentifier: buildIdentifier
@@ -31,8 +31,8 @@ export default GodStats;
 
 var statsSelector: ReturnType<typeof makeStatsSelector> | null = null;
 const StatTable = ({buildIdentifier}: BuildID) => {
-        const selector = statsSelector ?? makeStatsSelector(buildIdentifier)
-        const displayStat = (name: keyof StatBlock) => {
+    const selector = statsSelector ?? makeStatsSelector(buildIdentifier)
+    const displayStat = (name: keyof StatBlock) => {
         const mapStateToProps = (state: RootState) => {
             let build: Build = state[buildIdentifier];
             let events = selector(build);
@@ -60,13 +60,13 @@ const StatTable = ({buildIdentifier}: BuildID) => {
                 {displayStat('hp5')}
                 {displayStat('mp5')}
                 {displayStat('power')}
-                {displayStat('critChance')}
+                {displayStat('criticalStrikeChance')}
                 {displayStat('flatPenetration')}
                 {displayStat('percentPenetration')}
                 {displayStat('attackSpeed')}
-                {displayStat('physicalProtections')}
-                {displayStat('magicalProtections')}
-                {displayStat('moveSpeed')}
+                {displayStat('physicalProtection')}
+                {displayStat('magicalProtection')}
+                {displayStat('movementSpeed')}
                 {displayStat('cooldownReduction')}
                 {displayStat('crowdControlReduction')}
         </tbody></table>

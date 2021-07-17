@@ -1,11 +1,10 @@
 import { createSelector } from "@reduxjs/toolkit";
-import StatBlock, { add } from "../../data_objects/StatBlock";
-import Item from "../../data_objects/Item";
-import God from "../../data_objects/God";
 import KillTiming, { getTimeForGold, getLevelTimes } from "../../data_objects/KillTiming";
 import Build from "../../data_objects/Build";
 import buildIdentifier from "../buildIdentifier";
 import { Slot } from "../reducers/ItemPickerSlice";
+import { God, Item, StatBlock } from "@smite-timeline/smite-game-objects";
+import { add } from "@smite-timeline/smite-game-objects/lib/StatBlock";
 
 export type BuildEvent = ItemEvent | LevelEvent
 

@@ -1,8 +1,8 @@
 import makeStatsSelector, {makeGodEventSelector, makeItemEventSelector} from "./StatsSelector";
 import Build from "../../data_objects/Build";
-import God from "../../data_objects/God";
-import StatBlock, { add } from "../../data_objects/StatBlock";
 import buildIdentifier from "../buildIdentifier";
+import { God, StatBlock } from "@smite-timeline/smite-game-objects";
+import { add } from "@smite-timeline/smite-game-objects/lib/StatBlock";
 
 test('test god event selector', () => {
     let selector = makeGodEventSelector(buildIdentifier.left);
@@ -47,8 +47,8 @@ test('Use two selectors for two builds', () =>  {
         time: 0
     }
     
-    let selectorLeft = makeStatsSelector();
-    let selectorRight = makeStatsSelector();
+    let selectorLeft = makeStatsSelector(buildIdentifier.left);
+    let selectorRight = makeStatsSelector(buildIdentifier.right);
     let leftEvents = selectorLeft(testState.left)
     let rightEvents = selectorRight(testState.right)
     expect(leftEvents[0].stats.health).toBe(100);

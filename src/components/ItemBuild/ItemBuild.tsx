@@ -3,7 +3,7 @@ import './ItemBuild.css';
 import ItemSlot from './ItemSlot/ItemSlot';
 import buildIdentifier from "../../redux/buildIdentifier";
 import { connect } from 'react-redux';
-import Item from '../../data_objects/Item';
+import { Item } from '@smite-timeline/smite-game-objects';
 
 type ParentProps = {
     buildIdentifier: buildIdentifier,

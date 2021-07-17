@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit"
-import Item from "../../data_objects/Item";
+import { Item } from "@smite-timeline/smite-game-objects";
 import { defaultItems } from "../../data_objects/TestObjects";
 
 const ItemList = createSlice({

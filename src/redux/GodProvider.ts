@@ -1,4 +1,5 @@
-import God from "../data_objects/God";
+
+import { God } from "@smite-timeline/smite-game-objects";
 import { Ares, Cerberus } from "../data_objects/TestObjects";
 
 class GodProvider {

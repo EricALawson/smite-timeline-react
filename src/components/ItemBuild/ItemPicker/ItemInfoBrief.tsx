@@ -1,5 +1,5 @@
+import { Item } from '@smite-timeline/smite-game-objects';
 import React from 'react';
-import Item from '../../../data_objects/Item';
 import { useDispatch } from 'react-redux';
 import itemPicker from '../../../redux/reducers/ItemPickerSlice';
 import './ItemInfoBrief.css';

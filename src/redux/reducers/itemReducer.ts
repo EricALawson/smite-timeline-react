@@ -1,5 +1,5 @@
 import { PayloadAction } from '@reduxjs/toolkit';
-import Item, { EmptySlot } from '../../data_objects/Item';
+import Item, { EmptySlot } from '@smite-timeline/smite-game-objects/lib/Item';
 import Build from '../../data_objects/Build';
 
 type SetItemPayload = {

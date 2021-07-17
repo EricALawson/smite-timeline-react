@@ -1,7 +1,8 @@
 import { createSlice, Action, PayloadAction } from "@reduxjs/toolkit"
 import buildIdentifier from "../buildIdentifier";
-import Item, { EmptySlot } from "../../data_objects/Item";
 import { FilterName } from "../../components/ItemBuild/ItemPicker/FilterList";
+import { Item } from "@smite-timeline/smite-game-objects";
+import { EmptySlot } from "@smite-timeline/smite-game-objects/lib/Item";
 
 type Slot = {
     buildID: buildIdentifier,

@@ -3,7 +3,7 @@ import './TimelineSlider.css';
 import { connect } from 'react-redux';
 import {Slider} from 'antd';
 import { createAction } from '@reduxjs/toolkit';
-import { SliderValue, SliderMarks } from 'antd/lib/slider';
+import { SliderMarks } from 'antd/lib/slider';
 import { RootState } from '../../redux/store';
 import buildIdentifier from "../../redux/buildIdentifier";
 import makeStatsSelector, { BuildEvent } from '../../redux/selectors/StatsSelector';
@@ -15,7 +15,7 @@ import SliderTooltip from './SliderTooltip';
 type DispatchProps = ReturnType<typeof mapDispatchToProps>
 const mapDispatchToProps = (dispatch: any) => {
     return {
-        changeTime: (value: SliderValue) => {
+        changeTime: (value: number) => {
             if (typeof value === 'number') {
                 dispatch( createAction<number>('setTime')(value) );
             }

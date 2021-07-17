@@ -1,5 +1,5 @@
-import God from "./God";
-import Item from "./Item";
+
+import { God, Item } from "@smite-timeline/smite-game-objects";
 import KillTiming from "./KillTiming";
 import {shoesOfFocus, shoesOfTheMagi} from './TestObjects';
 

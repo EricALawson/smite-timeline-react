@@ -1,5 +1,5 @@
 import { PayloadAction } from '@reduxjs/toolkit';
-import God from '../../data_objects/God';
+import { God } from '@smite-timeline/smite-game-objects';
 import Build from '../../data_objects/Build';
 
 

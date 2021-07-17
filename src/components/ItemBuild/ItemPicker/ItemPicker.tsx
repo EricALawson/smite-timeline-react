@@ -6,8 +6,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { closeItemPicker } from '../../../redux/reducers/ItemPickerSlice';
 import { Button} from 'antd';
 import ItemInfoBrief from './ItemInfoBrief';
-import { EmptySlot } from '../../../data_objects/Item';
 import FilterList from './FilterList';
+import { EmptySlot } from '@smite-timeline/smite-game-objects/lib/Item';
 
 type Slot = {
     buildID: buildIdentifier,

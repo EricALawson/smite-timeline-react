@@ -1,9 +1,9 @@
 import React from 'react';
 import './ItemSlot.css';
-import Item from '../../../data_objects/Item';
 import { Slot } from '../../../redux/reducers/ItemPickerSlice';
 import { connect } from 'react-redux';
 import { Dispatch } from '@reduxjs/toolkit';
+import { Item } from '@smite-timeline/smite-game-objects';
 
 type SlotProps = {
     item: Item,

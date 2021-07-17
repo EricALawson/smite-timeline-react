@@ -1,9 +1,9 @@
 import React from 'react';
-import { EmptySlot } from '../../../data_objects/Item';
 import { Slot } from '../../../redux/reducers/ItemPickerSlice';
 import { connect } from 'react-redux';
 import { RootState } from '../../../redux/store';
 import buildIdentifier from "../../../redux/buildIdentifier";
+import { EmptySlot } from '@smite-timeline/smite-game-objects/lib/Item';
 
 type Props = {
     side: buildIdentifier
@@ -27,7 +27,8 @@ const mapState = (state: RootState, ownProps: Props) => {
     let buildItems = state[ownProps.side].items;
     let index = 0;
     for (index = buildItems.length - 1; index >= 0; index--) {
-        if (buildItems[index] !== EmptySlot) break;
+        const current = buildItems[index];
+        if (current !== EmptySlot) break;
     }
     index++;
     return { nextItemIndex: index}
