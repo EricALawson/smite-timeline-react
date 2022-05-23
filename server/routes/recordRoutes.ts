@@ -6,22 +6,24 @@ import { God, Item } from '@smite-timeline/smite-game-objects'
 const recordRoutes = express.Router();
 recordRoutes.use(express.json());
 
-recordRoutes.route("/gods/allnames").get( async () => {
+recordRoutes.route("/godnames").get( async (req, res) => {
     const db = await getDB();
 
     const arr = await db.collection<God>("gods")
         .find(
-            {$projection: {
-                _name: 1
+            {},
+            {
+                projection: {
+                    name: 1
             }}
-        )
+            )
         .toArray()
 
     const names: string[] = arr.map(it => it.name)
-    return names;
+    res.send(names)
 })
 
-recordRoutes.route("/gods/:godname").get( async (req)=> {
+recordRoutes.route("/gods/:godname").get( async (req, res)=> {
     const db = await getDB();
     const godname = req.params.godname
 
@@ -31,16 +33,18 @@ recordRoutes.route("/gods/:godname").get( async (req)=> {
     if (god === null) {
         throw new Error("No god found with that name");
     } else {
-        return god;
+        res.send(god);
     }
 })
 
-recordRoutes.route("/items/").get(async () => {
+recordRoutes.route("/items/").get(async (req, res) => {
     const db = await getDB();
 
-    return db.collection<Item>("items")
+    const items =  db.collection<Item>("items")
     .find({})
     .toArray();
+
+    res.send(items);
 });
 
 export { recordRoutes };
