@@ -14,18 +14,18 @@ class GodProvider {
     }
 
     //class code
-    private gods = new Map<string, God>();
+    private gods: Map<string, God>;
 
     private constructor() {
-        this.gods.set('Ares', Ares);
-        this.gods.set('Cerberus', Cerberus)
+        this.gods = new Map<string, God>();
     }
 
-    get godNames(): string[] {
-        return Array.from(this.gods.keys());
+    async getGodNames(): Promise<string[]> {
+        //return Array.from(this.gods.keys());
+        axios.get({`https://localhost:5000/godnames`})
     }
 
-    getGod(name: string): God|undefined {
+    async getGod(name: string): Promise<God|undefined> {
         return this.gods.get(name);
     }
 }
