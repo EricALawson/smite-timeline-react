@@ -7,4 +7,5 @@ test('expected structure',
     expect(state.left.god.name).toBeTruthy();
     expect(state.right.items).toBeTruthy();
     expect(state.time).toBe(0);
+    expect(state.items).toBeTruthy();
 })

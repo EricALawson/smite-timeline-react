@@ -9,6 +9,8 @@ import { Ares } from '../data_objects/TestObjects';
 import itemPicker from './reducers/ItemPickerSlice';
 import buildIdentifier from './buildIdentifier';
 import ItemList from './reducers/ItemList';
+import thunkMiddleware from 'redux-thunk';
+import axios from 'axios';
 
 const buildSlice = (name: buildIdentifier) => {
     return createSlice({
@@ -44,7 +46,8 @@ const rootReducer = combineReducers({
 export {rootReducer}
 
 const store = configureStore({
-    reducer: rootReducer
+    reducer: rootReducer,
+    middleware: [thunkMiddleware.withExtraArgument(axios)]
 });
 
 type RootState = ReturnType<typeof rootReducer>;
