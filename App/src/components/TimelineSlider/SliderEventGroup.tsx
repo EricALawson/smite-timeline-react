@@ -12,10 +12,10 @@ const Spacer = () => <div className='level-spacer'></div>
 const orderEventsByType = (events: BuildEvent[], side: buildIdentifier)  => {
     let ordered = [];
     if (events.filter(event => event.type === 'level' && event.slot.buildID === side).length === 0)  {
-        ordered.push(<Spacer></Spacer>);
+        ordered.push(<Spacer key='spacer'></Spacer>);
     } else {
         let levelEvents = events.filter((event): event is LevelEvent => event.slot.buildID === side && event.type === 'level')
-                            .map(event => <div className='level-event'>{event.level}</div>)
+                            .map(event => <div className='level-event' key={'level' + event.level}>{event.level}</div>)
         ordered.push(...levelEvents);
     }
     let itemEvents = events.filter((event): event is ItemEvent => event.slot.buildID === side && event.type === 'item finished')
@@ -27,10 +27,10 @@ const orderEventsByType = (events: BuildEvent[], side: buildIdentifier)  => {
 
 const SliderEventGroup = ({ events}: Props) => {
     return (<div className={'event-group'}>
-        <div className='left event-group-side'>
+        <div className='left event-group-side' key='left'>
             {orderEventsByType(events, buildIdentifier.left)}
         </div>
-        <div className='right event-group-side'>
+        <div className='right event-group-side' key='right'>
             {orderEventsByType(events, buildIdentifier.right)}
         </div>
     </div>)

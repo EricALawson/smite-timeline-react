@@ -35,7 +35,7 @@ const filterCategories: FilterCategories = {
 
 type ItemFilter = (item: Item) => boolean
 const filterToComponent = (filterName: FilterName, dispatch: Dispatch<PayloadAction<FilterName>>) => {
-    return <div>
+    return <div key={filterName}>
         {filterName}
         <input type="checkbox" 
             onClick={() => dispatch({
@@ -51,7 +51,7 @@ export default () => {
     
     return <div className='filters'>
         {Object.entries(filterCategories).map(([filterCategory, filterNames]) => {
-            return <div>{filterCategory}
+            return <div key={filterCategory}>{filterCategory}
                 <ul className='filter-list'>
                     {filterNames.map(filter => filterToComponent(filter, dispatch))}
                 </ul>
