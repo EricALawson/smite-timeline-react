@@ -1,19 +1,25 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import {createRoot} from 'react-dom/client'
 import './index.css';
 import App from './components/App/App';
 import * as serviceWorker from './serviceWorker';
 import {Provider} from 'react-redux';
 import store from './redux/store';
 
-ReactDOM.render(
-  <React.StrictMode>
-    <Provider store={store}>
+const rootElement = document.getElementById('root');
+if (rootElement != null) {
+  const root = createRoot(rootElement);
+  root.render(
+    <React.StrictMode>
+      <Provider store={store}>
         <App />
-    </Provider>
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+      </Provider>
+    </React.StrictMode>
+  )
+} else {
+  console.error('Unable to find root element for React to render.');
+}
+
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
