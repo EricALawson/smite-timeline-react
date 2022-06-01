@@ -11,6 +11,7 @@ import buildIdentifier from './buildIdentifier';
 import ItemList from './reducers/ItemList';
 import thunkMiddleware from 'redux-thunk';
 import axios from 'axios';
+import GodList from './GodList';
 
 const buildSlice = (name: buildIdentifier) => {
     return createSlice({
@@ -40,7 +41,8 @@ const rootReducer = combineReducers({
     right: rightBuild.reducer,
     time: timeReducer,
     itemPicker: itemPicker.reducer,
-    items: ItemList.reducer
+    items: ItemList.reducer,
+    gods: GodList.reducer
 });
 
 export {rootReducer}

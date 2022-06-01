@@ -9,16 +9,12 @@ export type GodListState = {
     gods: {[key: string]: God}
 }
 
-const actionGodNameList = (payload: string[]) => {
-    return {
-        type: 'updateGodNameList',
-        payload: payload
-    }
-}
-
 export default createSlice({
     name: "gods",
-    initialState: {} as GodListState,
+    initialState: {
+        names: [],
+        gods: {}
+    } as GodListState,
     reducers: {
         updateGodNameList: (state: GodListState, action: PayloadAction<string[]>) => {
             const names = action.payload;
@@ -39,13 +35,9 @@ export const thunkLoadGodNames =
     (): ThunkAction<void, RootState, unknown, PayloadAction<string[]>> =>
     async (dispatch, getState) => {
         try {
-            const request = await axios.get<string[]>(`https://localhost:5000/godnames`);
-            const payload = {
-                names: request.data,
-                gods: {}
-            } 
+            const request = await axios.get<string[]>(`http://localhost:5000/godnames`);
             dispatch({
-                type: 'updateGodNameList',
+                type: 'gods/updateGodNameList',
                 payload: request.data
             });
         } catch (err) {
@@ -58,9 +50,9 @@ export const thunkLoadGodStats =
     (name: string): ThunkAction<void, RootState, Axios, PayloadAction<God>> =>
     async (dispatch, getState, axios) => {
         try {
-            const request = await axios.get<God>(`https://localhost:5000/gods/${name}`);
+            const request = await axios.get<God>(`http://localhost:5000/gods/${name}`);
             dispatch({
-                type: "loadGodStats",
+                type: "gods/updateGodStats",
                 payload: request.data
             });
         } catch(err) {

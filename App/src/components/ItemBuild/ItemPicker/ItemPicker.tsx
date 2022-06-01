@@ -36,7 +36,7 @@ const ItemPicker = () => {
         closeSelector();
     }
 
-    const allItems = useSelector((state: RootState) => state.items);
+    const allItems = useSelector((state: RootState) => Object.values(state.items));
 
     return (
         <dialog 

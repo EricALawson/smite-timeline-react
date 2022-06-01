@@ -1,46 +1,59 @@
 import React from 'react'
-import GodProvider from '../../redux/GodProvider'
+import { thunkLoadGodNames, thunkLoadGodStats } from '../../redux/GodList'
 import buildIdentifier from "../../redux/buildIdentifier"
 import { Dropdown, Menu, Button } from 'antd'
 import MenuItem from 'antd/lib/menu/MenuItem'
 import { connect } from 'react-redux'
+import { thunkSetGodByName } from '../../redux/reducers/GodReducer'
+import { RootState } from '../../redux/store'
 
 type Props = { buildIdentifier: buildIdentifier }
 
-type DispatchProp = { pickGod: (key: number, buildIdentifier: buildIdentifier) => void }
+type DispatchProp = { 
+    pickGod: (name: string, buildIdentifier: buildIdentifier) => void,
+    loadGodNames: () => void
+ }
 
-type stateProp = { image: string }
-
-const gods = GodProvider.getInstance();
+type stateProp = { 
+    image: string,
+    godNames: string[]
+}
 
 const mapDispatch = (dispatch: any) => {
     return {
-        pickGod: (key: number, buildIdentifier: buildIdentifier) => {
-            
-            const name = gods.godNames[key];
-            const selectedGod = gods.getGod(name);
-            if (selectedGod) {
-                const action = {
-                    type: buildIdentifier + '/godReducer',
-                    payload: selectedGod
-                }
-                dispatch(action);
-            }
+        pickGod: (name: string, buildIdentifier: buildIdentifier) => {
+            dispatch(thunkSetGodByName(name, buildIdentifier));
+            dispatch(thunkLoadGodStats(name));
+        },
+        loadGodNames: () => {
+            dispatch(thunkLoadGodNames());
         }
     }
 }
 
 
 const GodSelector = ({buildIdentifier}: Props) => {
-    const mapStateToProps = (state: any) => {
-        return {image: state[buildIdentifier].god.image}
+    const mapStateToProps = (state: RootState) => {
+        return {
+            image: state[buildIdentifier].god.image,
+            godNames: state.gods.names
+        }
     }
     
-    const component = ({image, pickGod}: stateProp & DispatchProp) => {
-        const onClick = ({key}: any) => pickGod(key, buildIdentifier)
-        const menu =  <Menu onClick={onClick}>
-            {gods.godNames.map((name: string, index: number) => <MenuItem key={index} aria-label={'select '+ name + ' ' + buildIdentifier}>{name}</MenuItem>)}
-        </Menu>
+    const component = ({image, godNames, pickGod, loadGodNames}: stateProp & DispatchProp) => {
+        const onClick = ({key}: {key: string}) => pickGod(key, buildIdentifier)
+
+        if (godNames.length == 0) {
+            loadGodNames();
+        }
+        const items = godNames.map((name: string) => {
+            return { 
+                key: name,
+                arialabel: 'select ' + name + ' ' + buildIdentifier,
+                label: name
+            }
+        });
+        const menu = <Menu onClick={onClick} items={items}/>
         
         return (<div className="godSelection">
             <Dropdown overlay={menu}>
