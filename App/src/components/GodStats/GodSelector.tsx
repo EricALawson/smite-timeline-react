@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { thunkLoadGodNames, thunkLoadGodStats } from '../../redux/GodList'
 import buildIdentifier from "../../redux/buildIdentifier"
 import { Dropdown, Menu, Button } from 'antd'
@@ -40,12 +40,11 @@ const GodSelector = ({buildIdentifier}: Props) => {
         }
     }
     
-    const component = ({image, godNames, pickGod, loadGodNames}: stateProp & DispatchProp) => {
+    const Component = ({image, godNames, pickGod, loadGodNames}: stateProp & DispatchProp) => {
         const onClick = ({key}: {key: string}) => pickGod(key, buildIdentifier)
 
-        if (godNames.length == 0) {
-            loadGodNames();
-        }
+        useEffect(() => loadGodNames(), [])
+
         const items = godNames.map((name: string) => {
             return { 
                 key: name,
@@ -63,7 +62,7 @@ const GodSelector = ({buildIdentifier}: Props) => {
         </div>)
     }
 
-    const ConnectedComponent = connect(mapStateToProps, mapDispatch)(component);
+    const ConnectedComponent = connect(mapStateToProps, mapDispatch)(Component);
     return <ConnectedComponent></ConnectedComponent>
 }
 
