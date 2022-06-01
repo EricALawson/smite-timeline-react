@@ -21,9 +21,9 @@ type stateProp = {
 
 const mapDispatch = (dispatch: any) => {
     return {
-        pickGod: (name: string, buildIdentifier: buildIdentifier) => {
-            dispatch(thunkSetGodByName(name, buildIdentifier));
-            dispatch(thunkLoadGodStats(name));
+        pickGod: async (name: string, buildIdentifier: buildIdentifier) => {
+            await dispatch(thunkLoadGodStats(name));
+            dispatch(thunkSetGodByName(name, buildIdentifier))
         },
         loadGodNames: () => {
             dispatch(thunkLoadGodNames());

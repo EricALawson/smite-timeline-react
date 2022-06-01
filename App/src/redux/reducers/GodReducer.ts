@@ -17,7 +17,7 @@ export default godReducer;
 
 export const setGodAction = (buildID: buildIdentifier, god: God) => {
     return {
-        type: buildIdentifier + '/godReducer',
+        type: buildID + '/godReducer',
         payload: god
     };
 };

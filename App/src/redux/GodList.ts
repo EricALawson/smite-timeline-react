@@ -47,7 +47,7 @@ export const thunkLoadGodNames =
     }
 
 export const thunkLoadGodStats =
-    (name: string): ThunkAction<void, RootState, Axios, PayloadAction<God>> =>
+    (name: string): ThunkAction<Promise<void>, RootState, Axios, PayloadAction<God>> =>
     async (dispatch, getState, axios) => {
         try {
             const request = await axios.get<God>(`http://localhost:5000/gods/${name}`);
