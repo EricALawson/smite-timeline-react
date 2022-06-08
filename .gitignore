@@ -10,6 +10,7 @@
 
 # production
 /App/build
+/superbin
 
 # misc
 .DS_Store

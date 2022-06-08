@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "single page web application based on the game SMITE by hi-rez studios. This is a tool for visualizing in game builds as time series data.",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "compile": "tsc -b -w -i",
+    "eslint": "eslint src/**/**.{ts,tsx}",
+    "eslint:fix": "eslint src/**/**.{ts,tsx} --fix"
   },
   "repository": {
     "type": "git",
@@ -22,6 +24,15 @@
   },
   "homepage": "https://github.com/EricALawson/smite-timeline-react#readme",
   "dependencies": {
+    "typescript": "^4.2.4",
     "@smite-timeline/smite-game-objects": "^1.0.7"
-  }
+
+  },
+  "devDependencies": {
+    "@types/jest": "^24.9.1",
+    "@types/node": "^17.0.35"
+  },
+  "workspaces": [
+    "packages/*"
+  ]
 }

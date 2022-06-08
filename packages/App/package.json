@@ -1,5 +1,5 @@
 {
-  "name": "smite-timeline",
+  "name": "@smite-timeline/app",
   "exports": {
     "./StatBlock": "./src/data_objects/StatBlock.ts"
   },

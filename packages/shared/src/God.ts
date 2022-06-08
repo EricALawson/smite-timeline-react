@@ -21,6 +21,7 @@ const God = (
     baseStats: StatBlock = StatBlock({}),
     perLevelStats: StatBlock = StatBlock({})
 ): God => {
+    throw new Error('link test')
     return {
         name: name,
         baseStats: baseStats,

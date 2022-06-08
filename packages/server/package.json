@@ -1,5 +1,5 @@
 {
-  "name": "smite-timeline-server",
+  "name": "@smite-timeline/server",
   "version": "0.1.0",
   "description": "backend for smite timeline web app",
   "type": "commonjs",
