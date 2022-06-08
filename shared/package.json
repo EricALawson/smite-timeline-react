@@ -1,0 +1,19 @@
+{
+  "name": "@smite-timeline/smite-game-objects",
+  "version": "1.0.7",
+  "description": "type definitions, classes, and helper functions for data describing in game objects from teh video game SMITE. Includes items and gods, and maybe more in the future.",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "scripts": {
+    "build": "tsc -p ."
+  },
+  "keywords": [
+    "SMITE"
+  ],
+  "author": "ericlawson",
+  "license": "ISC",
+  "dependencies": {
+    "@types/node": "^15.0.2",
+    "typescript": "^4.2.4"
+  }
+}
