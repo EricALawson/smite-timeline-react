@@ -13,6 +13,17 @@
         "rootDir": "./src",
         "outDir": "./superbin"
     },
+    "references": [
+        {
+            "path":"./packages/App"
+        },
+        {
+            "path": "./packages/server"
+        },
+        {
+            "path": "./packages/shared"
+        }
+    ],
     "files": [
         "./src/index.ts"
     ]

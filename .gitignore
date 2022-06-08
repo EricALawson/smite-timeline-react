@@ -11,6 +11,7 @@
 # production
 /App/build
 /superbin
+**/bin
 
 # misc
 .DS_Store

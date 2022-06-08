@@ -1,5 +1,4 @@
 import express from 'express';
-import { FindCursor } from 'mongodb';
 import { getDB } from '../database/connection';
 import { God, Item } from '@smite-timeline/smite-game-objects'
 
