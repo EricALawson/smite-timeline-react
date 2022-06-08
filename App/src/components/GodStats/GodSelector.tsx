@@ -2,7 +2,6 @@ import React, { useEffect } from 'react'
 import { thunkLoadGodNames, thunkLoadGodStats } from '../../redux/GodList'
 import buildIdentifier from "../../redux/buildIdentifier"
 import { Dropdown, Menu, Button } from 'antd'
-import MenuItem from 'antd/lib/menu/MenuItem'
 import { connect } from 'react-redux'
 import { thunkSetGodByName } from '../../redux/reducers/GodReducer'
 import { RootState } from '../../redux/store'
