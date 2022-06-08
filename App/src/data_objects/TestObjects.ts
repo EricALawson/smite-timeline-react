@@ -1,5 +1,5 @@
 
-import { God, Item, StatBlock } from "@smite-timeline/smite-game-objects";
+import { God, Item, StatBlock } from '@smite-timeline/smite-game-objects'
 
 const Ares = God(
     'Ares',
@@ -74,10 +74,9 @@ let shoesOfTheMagi = Item(
 
 export {shoesOfTheMagi};
 
-function itemImagePath(itemName: string): string {
-    return "https://web2.hirez.com/smite/item-icons/" + itemName.toLowerCase().replace(/\s/g, "-") + ".jpg";
+export function itemImagePath(itemName: string): string {
+    return "http://web2.hirez.com/smite/item-icons/" + itemName.toLowerCase().replace(/\s/g, "-") + ".jpg";
 }
 
 const defaultItems = [shoesOfFocus, shoesOfTheMagi] 
-
 export {defaultItems};
