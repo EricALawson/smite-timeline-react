@@ -9,7 +9,6 @@ import { ParseResult, ScrapeResult, ScrapeTarget } from './ScrapeTarget';
 import { once } from 'events';
 import { batchProcess } from './batchProcess';
 import { writeToDatabase } from './writeToDatabase';
-import wtf from 'wtfnode';
 
 //Webscraper Main Entrypoint
 (async function() {

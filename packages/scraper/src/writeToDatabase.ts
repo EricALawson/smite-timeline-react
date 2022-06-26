@@ -1,26 +1,14 @@
-import { Collection, MongoClient } from 'mongodb';
-import fs from 'fs';
 import { ParseResult } from './ScrapeTarget';
+import { smiteTimelineDatabase } from './getMongoClient';
+import { Db } from 'mongodb';
 
-
-const loginFile = './dblogin.txt';
-const login = fs.readFileSync(loginFile).toString().split('\n');
-const [nm, ps, db] = login.map(str => str.trim());
-
-
-export async function writeToDatabase(
-    parseResult: ParseResult | Error,
-    name: string = nm, 
-    pass: string = ps, 
-    database: string = db
-): Promise<ParseResult | Error> {
-    const uri = `mongodb+srv://${name}:${pass}@smite-timeline-0.n3o8x.mongodb.net/${database}?retryWrites=true&w=majority`
+export async function writeToDatabase(parseResult: ParseResult | Error): Promise<ParseResult | Error> 
+{
     if (parseResult instanceof Error)
         return parseResult;
-    const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+        let db: Db | undefined;
     try {
-        await client.connect();
-        const db = client.db(database);
+        db = await smiteTimelineDatabase;
         const rawHTMLCollection = db.collection("wiki-scraper-raw");
         const updateHTMLResult = await rawHTMLCollection.updateOne(
             {
@@ -39,13 +27,11 @@ export async function writeToDatabase(
             },
             { upsert: true }
         );
-        if (updateParsedResult.result.ok < updateParsedResult.result.n) {
+        if (updateParsedResult.upsertedCount < 1) {
             throw new Error('a write operation failed');
         }
     } catch (err) {
         return err; 
-    } finally {
-        await client.close();
     }
     return parseResult;
 }
