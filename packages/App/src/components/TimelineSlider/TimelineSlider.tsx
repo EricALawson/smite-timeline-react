@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { Dispatch } from 'react';
 import './TimelineSlider.css';
 import { connect } from 'react-redux';
 import {Slider} from 'antd';
-import { createAction } from '@reduxjs/toolkit';
+import { createAction, PayloadAction } from '@reduxjs/toolkit';
 import { SliderMarks } from 'antd/lib/slider';
 import { RootState } from '../../redux/store';
 import buildIdentifier from "../../redux/buildIdentifier";
@@ -13,7 +13,7 @@ import SliderTooltip from './SliderTooltip';
 
 
 type DispatchProps = ReturnType<typeof mapDispatchToProps>
-const mapDispatchToProps = (dispatch: any) => {
+const mapDispatchToProps = (dispatch: Dispatch<PayloadAction<number>>) => {
     return {
         changeTime: (value: number) => {
             if (typeof value === 'number') {

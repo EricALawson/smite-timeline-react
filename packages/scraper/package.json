@@ -1,0 +1,25 @@
+{
+  "name": "smite-wiki-scraper",
+  "version": "1.0.0",
+  "description": "webscraper to read smite wiki and save item and god stats to a file",
+  "main": "src/index.js",
+  "dependencies": {
+    "@types/puppeteer": "^5.4.3",
+    "chromedriver": "^90.0.0",
+    "cli-progress": "^3.9.0",
+    "lodash": "^4.17.21",
+    "puppeteer": "^9.1.1"
+  },
+  "devDependencies": {
+    "@types/chromedriver": "^81.0.0",
+    "@types/lodash": "^4.14.168",
+    "source-map-support": "^0.5.19",
+    "tslint": "^6.1.3"
+  },
+  "scripts": {
+    "test": "jest",
+    "start": "tsc && node -r source-map-support/register --trace-warnings build/src/index.js"
+  },
+  "author": "Eric Lawson",
+  "license": "ISC"
+}
