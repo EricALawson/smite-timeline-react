@@ -8,7 +8,7 @@ export async function writeToDatabase(parseResult: ParseResult | Error): Promise
         return parseResult;
         let db: Db | undefined;
     try {
-        db = await smiteTimelineDatabase;
+        db = await smiteTimelineDatabase();
         const rawHTMLCollection = db.collection("wiki-scraper-raw");
         const updateHTMLResult = await rawHTMLCollection.updateOne(
             {
@@ -27,7 +27,7 @@ export async function writeToDatabase(parseResult: ParseResult | Error): Promise
             },
             { upsert: true }
         );
-        if (updateParsedResult.upsertedCount < 1) {
+        if (updateParsedResult.matchedCount < 1) {
             throw new Error('a write operation failed');
         }
     } catch (err) {

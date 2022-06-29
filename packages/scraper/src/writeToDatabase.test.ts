@@ -3,17 +3,14 @@ import { ZeroStats } from "@smite-timeline/smite-game-objects/lib/StatBlock";
 import { ParsedGod, ParsedItem, ParseResult } from "./ScrapeTarget";
 import { writeToDatabase } from "./writeToDatabase";
 import fs from 'fs';
+import 'dotenv/config'
 
 
 describe('writeToDatabase', () => {
     let login: string[];
-    beforeAll(() => {
-        const loginFile = './testlogin.txt';
-        login = fs.readFileSync(loginFile)
-            .toString()
-            .split('\n')
-            .map(str => str.trim());
-    })
+    // beforeAll(() => {
+        
+    // })
 
     const testItem: Item = {
         goldCost: 0,
@@ -32,7 +29,7 @@ describe('writeToDatabase', () => {
 
     it('does not throw with a valid ParseResult object', async () => {
         expect.assertions(1);
-        const result = await writeToDatabase(validParseResult, ...login)
+        const result = await writeToDatabase(validParseResult)
         return expect(result).toBe(validParseResult);
 
     });
